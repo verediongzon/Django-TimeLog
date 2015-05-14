@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+
+<title>History</title>
+    
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link href="{{ STATIC_URL }}/logme/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}/logme/css/style.css" rel="stylesheet">
+
+
+</head> 
+<body>
+
+    <div class="container">
+       
+            {% csrf_token %}
+
+            <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th><div class="panel-heading"><h4><strong><p class= "text-center"> Dates </th></p>
+                            </strong>
+                            <th><div class="panel-heading"><h4><strong><p class= "text-center"> Total Time Logged 
+                            </th></p></strong>
+                        </tr>
+                    </thead>
+                            {% for displayed in display %}
+                    <tbody> 
+                        <br>
+                        <tr>
+                            <td><h5><p class= "text-center"> {{ displayed.today_in }} </p></h5></td>
+                            <td><h5><p class= "text-center"> {{ displayed.today_total }}</p></h5></td>
+                        </tr>
+                            {% endfor %}
+                    </tbody>
+            </table>
+                       <a href="{% url 'logat:home' %}">  <button type ="submit" class= "btn btn-primary" > back </button>
+     
+    </div>
+</body>
+</html>

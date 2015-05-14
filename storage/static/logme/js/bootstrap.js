@@ -1,0 +1,1 @@
+/home/kristoff/django-TimeLog/logme/static/logme/js/bootstrap.js

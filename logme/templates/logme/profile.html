@@ -1,0 +1,37 @@
+<html>
+
+<body>
+
+	<table style ='width:50%' align='center'>
+		<tr>
+			<th>Time in</th>
+			<th>Time out</th>
+			<th>Time Total</th>
+		</tr>
+	
+			
+
+			{% for showing in show_history %}
+			
+				<tr>
+					<td>{{showing.timein}}</td>
+					<td>{{showing.timeout}}</td>
+					<td>{{showing.totaltime}}</td>
+						
+			
+			{% endfor %}
+
+		 
+				</tr>
+
+
+			<a href="{% url 'logat:admin' %}" ><button> Back </button>
+
+			
+		
+	</table>
+
+</body>
+
+
+</html>

@@ -1,0 +1,54 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
+
+
+body {
+    background-color: white;
+  	
+}
+
+.alt1 {
+
+	font-family: 'Source Sans Pro', sans-serif;
+    font-style: normal;
+	margin: 10px;
+
+}
+
+.alt2 {
+
+	font-family: 'Source Sans Pro', sans-serif;
+    font-style: normal;
+	margin: 10px;
+}
+
+.alt .input-group {
+
+	font-family: 'Source Sans Pro', sans-serif;
+    font-style: normal;
+    width: 100%;
+}
+
+.jumbotron {
+    background-color: white;
+}
+
+.form-control {
+
+	font-family: 'Source Sans Pro', sans-serif;
+    font-style: normal;
+}
+
+.panel-primary{
+	margin-bottom: 0px;
+}
+
+.panel-body {
+
+  padding: 6px;
+}
+
+.jumbotron .btn-primary {
+
+	margin-right: 8px; 
+	border-radius: 24px;
+}

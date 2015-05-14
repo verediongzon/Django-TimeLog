@@ -1,0 +1,25 @@
+<html>
+
+<body>
+
+    <table align='center' style='width:50%'>
+
+        <tr>
+            <th> Dates </th>
+            <th> Total Time Logged </th>
+        </tr>
+        {% for show in u_total_show %}
+        <tr>
+            <td> {{ show.today_in }} </td>
+            <td> {{ show.today_total }} </td>
+        </tr>
+        {% endfor %}
+
+        <a href="{% url 'logat:admin' %}" ><button> Back </button>
+
+    
+    </table>
+
+</body>
+
+</html>

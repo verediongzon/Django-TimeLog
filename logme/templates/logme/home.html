@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+    
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link href="{{ STATIC_URL }}/logme/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}/logme/css/style.css" rel="stylesheet">
+
+</head> 
+    <body>
+        
+        <form action="{% url 'logat:home' %}" method="POST"> 
+            {% csrf_token %}
+            
+            <div class="container">
+                <div class="jumbotron">     
+                     <span class="pull-right"><button type="submit" class="btn btn-primary" name = 'logout' value ='Logout'/>Logout</button></span>
+                     <span class="pull-right"><button type="submit" class="btn btn-primary" name = 'history' value ='All History'/>History</button></span>
+                     <span class="pull-right"><button type='submit' class="btn btn-primary" name = 'cpass' value="Change Password"/>Change Password</button></span>
+                     <br>
+                        <br>
+                            <br>
+                                <h1><p class= "text-center"><strong> {{user.first_name}} {{user.last_name}} </p></h1></strong></a>
+                                    <h3><p class= "text-center"> <strong>Logged on: {{timein}}</strong></p></h3>
+                                </br>
+                </div> <!-- end of jumbotron -->
+            </div> <!-- end of container -->
+ 
+            <div class = "container">
+             <h5><strong> Today's Total Time:</strong> {{ today_total }} </h5>
+                <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th><div class="panel-heading"><h4><strong><p class= "text-center">Time In</h4></strong></p></div></th>
+                        <th><div class="panel-heading"><h4><strong><p class= "text-center">Time Out</h4></strong></p></div></th>
+                        <th><div class="panel-heading"><h4><strong><p class= "text-center">Total Time</h4></strong></p></div></th>
+                    </tr>
+                </thead>
+                <tbody>
+                        {% for show in sorts %} 
+                                        
+                    <tr>    
+                    <td><p class= "text-center">{{show.timein}}</p></td>
+                    <td><p class= "text-center">{{show.timeout}}</p></td>   
+                    <td><p class= "text-center">{{show.totaltime}}</p></td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+                </table>
+            </div> <!-- end of container -->
+        </form>
+    </body>
+</html>
