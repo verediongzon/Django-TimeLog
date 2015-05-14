@@ -8,6 +8,12 @@ class RegistrationForm(user_forms.UserCreationForm):
         model = User
         fields = ['first_name', 'last_name', 'username', 'password1', 'password2', 'email']
 
+    def clean_first_name(self):
+        return self.cleaned_data['first_name'].capitalize()
+
+    def clean_last_name(self):
+        return self.cleaned_data['last_name'].capitalize()
+
     def clean_password1(self):
         password1 = self.cleaned_data.get('password1', '')
         if len(password1) < 6:
@@ -19,6 +25,7 @@ class RegistrationForm(user_forms.UserCreationForm):
         if len(password2) < 6:
             raise forms.ValidationError("Password must have at least 6 characters.")
         return password2
+
  
 class PasswordChangeForm(user_forms.SetPasswordForm):    
     
