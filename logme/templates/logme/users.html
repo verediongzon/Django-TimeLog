@@ -1,0 +1,34 @@
+<html>
+<head>
+	<title> All Registered Users </title>
+</head>
+
+<body>
+
+	<table align='center' style='width:50%'>
+
+		<tr>
+
+			<th> Username </th>
+			<th> Fullname </th>
+			<th> Status </th>
+
+		</tr>
+
+		{% for shows in allusers %}
+		<tr>
+
+			<td> {{ shows.username }} </td>
+			<td> {{ shows.first_name }} {{ shows.last_name }} </td>
+			<td>  {}</td>
+
+
+		</tr>
+		{% endfor %}
+
+	</table>
+
+</body>
+
+
+</html>

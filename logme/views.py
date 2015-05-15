@@ -217,6 +217,10 @@ class Admin_Home(generic.TemplateView):
 			
 			return HttpResponseRedirect(reverse('logat:daytotal', args=[selected_user]))
 
+		if request.POST.get('users'):
+
+			return redirect('logat:user')
+
 
 class Profile(generic.TemplateView):
 	template_name = 'logme/profile.html'	
@@ -255,3 +259,12 @@ class ChangePassword(generic.TemplateView):
             form.save()
             context['change'] = True
         return self.render_to_response(context)
+
+class All_User(generic.TemplateView):
+	template_name = 'logme/users.html'
+
+	def get(self, request):
+
+		allusers = User.objects.all()
+
+		return self.render_to_response({'allusers':allusers})

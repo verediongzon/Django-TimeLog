@@ -6,23 +6,11 @@ from datetime import datetime
 
 
 class Account(models.Model):
-	OJT = 'OJT'
-	REG = 'RE'
-	UNREG = 'URE'
-	EMPLOYEE_CHOICE = (
-		(OJT, 'OJT'),
-		(REG, 'Regular'),
-		(UNREG, 'Not Regular'),
-	)
-
-
-	classtype = models.CharField(max_length=5,
-									choices = EMPLOYEE_CHOICE,
-									default = REG)
 	
 	user = models.OneToOneField(User, related_name='account')
-
 	status = models.CharField(max_length=10, default='offline')
+	employee_type = models.CharField(max_length=20)
+	rate = models.IntegerField(default=0)
 
 	@property
 	def fullname(self):
