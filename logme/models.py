@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime, timedelta
-import datetime
-from datetime import datetime
 
 
 class Account(models.Model):
@@ -32,9 +30,11 @@ class History(models.Model):
 			partial = timedelta(0)
 			return partial
 
-		time_difference = (self.timeout - self.timein)
-	
-		return time_difference
+		
+		time_difference = self.timeout - self.timein
+
+		print time_difference
+		return datetime.strptime("time_difference", "%H:%M:%S")
 
 	def __unicode__(self):
 		return '{0}' .format('Timelog')
@@ -43,6 +43,11 @@ class Total(models.Model):
 	account = models.ForeignKey(Account, related_name='total')
 	today_in = models.DateField(auto_now_add=True)
 	today_total = models.CharField(max_length=100)
+
+	@property
+	def salarytotal(self):
+		daysalary =  5* self.account.rate
+		return daysalary
 
 	def __unicode__(self):
 		return '{0}' .format('Totals')

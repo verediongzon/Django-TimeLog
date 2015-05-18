@@ -93,8 +93,7 @@ class Home_Page(generic.TemplateView):
 			timein = getting_last_history.timein
 			str(timein)
 			datenow = timein.strftime('%Y-%m-%d')
-	
-			
+				
 			filtered_history = self.request.user.account.history.filter(timein__startswith=datenow)
 
 			
@@ -106,8 +105,11 @@ class Home_Page(generic.TemplateView):
 
 			
 			today = self.request.user.account.total.last()
+			
 			today.today_total = today_total
 			today.save()
+
+
 
 
 			return self.render_to_response({'sorts':sorting_history, 'timein':timein,'today_total':today_total})
@@ -128,7 +130,8 @@ class Home_Page(generic.TemplateView):
 			timein = getting_last_history.timein
 			str(timein)
 			datenow = timein.strftime('%Y-%m-%d')
-	
+
+
 			filtered_history = self.request.user.account.history.filter(timein__startswith=datenow)
 
 			today_total = timedelta(0)
@@ -217,10 +220,6 @@ class Admin_Home(generic.TemplateView):
 			
 			return HttpResponseRedirect(reverse('logat:daytotal', args=[selected_user]))
 
-		if request.POST.get('users'):
-
-			return redirect('logat:user')
-
 
 class Profile(generic.TemplateView):
 	template_name = 'logme/profile.html'	
@@ -259,12 +258,3 @@ class ChangePassword(generic.TemplateView):
             form.save()
             context['change'] = True
         return self.render_to_response(context)
-
-class All_User(generic.TemplateView):
-	template_name = 'logme/users.html'
-
-	def get(self, request):
-
-		allusers = User.objects.all()
-
-		return self.render_to_response({'allusers':allusers})

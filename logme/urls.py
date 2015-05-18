@@ -11,5 +11,5 @@ urlpatterns = patterns('',
 	url(r'^profile/(?P<pk>\d+)/$', views.Profile.as_view(), name='profile'),
 	url(r'^daytotal/(?P<pk>\d+)/$', views.Histories.as_view(), name='daytotal'),
 	url(r'^change/$', views.ChangePassword.as_view(), name='change_password'),
-	url(r'^allusers/$', views.All_User.as_view(), name = 'user'),
+	# url(r'^allusers/$', views.All_User.as_view(), name = 'user'),
 )

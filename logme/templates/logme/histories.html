@@ -7,11 +7,13 @@
         <tr>
             <th> Dates </th>
             <th> Total Time Logged </th>
+            <th> Day Salary </th>
         </tr>
         {% for show in u_total_show %}
         <tr>
             <td> {{ show.today_in }} </td>
             <td> {{ show.today_total }} </td>
+            <td> {{ show.salarytotal }} </td>
         </tr>
         {% endfor %}
 
@@ -21,5 +23,4 @@
     </table>
 
 </body>
-
 </html>
