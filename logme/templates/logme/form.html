@@ -3,66 +3,78 @@
 <html lang="en">
 <head>
 
-	<title>Log In</title>
+    <title>Log In</title>
 
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link href="{{ STATIC_URL }}/logme/css/bootstrap.min.css" rel="stylesheet">
-	<link href="{{STATIC_URL}}/logme/css/style.css" rel="stylesheet">
-	
+    <link href="{{ STATIC_URL }}/logme/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}/logme/css/style.css" rel="stylesheet">
+    
 </head>
    <body>
-		</br></br></br></br></br></br></br>
-	  
-		<div class="container">
-			<div class="row">			
-			  <div class="col-sm-6 col-md-5 col-md-offset-4">
-				<div class="panel panel-primary">
-				  <div class="panel-heading"> 
-					<h1 class="panel-title"><strong><center>Login to your Timelog</center></strong></h1>
-				</div>  <!--end panel panel-primary -->
-				  </div> <!--end panel-heading  -->
-		
 
-		  <div class="panel-body">
-			  <div class="form-group">
-				  <form action = "{%url 'logat:index' %}" method = "POST">
-						{% csrf_token %}
-						{% if error_message %}
-					  <div class="alert alert-danger">
-					<p class= "text-center">{{ error_message }}</p>
-						{% endif %}
-					  </div>
-			   </div>
-					  <div class="alt1" style="margin-top:-13px;">
-						  <div class="input-group">
-							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							<input type="text" class="form-control" name= "username" value="" placeholder="Username" required autofocus>
-						  </div>  <!--end input group -->
-					   </div> <!--end alt1 -->
+          <nav class="navbar navbar-inverse navbar-fixed-top">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand">Time Log</a>
+                        </div>
+                    </div>
+          </nav>
 
-					  <div class="alt2">
-						  <div class="input-group">
-							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-							<input type="password" class="form-control" name="password" value="" placeholder="Password">
-						  </div> <!--end input group -->
-					   </div> <!--end alt2  -->
+        <div class="container">
+            <div class="row">       
+                <div class="col-sm-5 col-md-4 col-md-offset-4">
+                    <div class="panel-body">
+                        
+                        <div class="form-group">
+                            <form action = "{%url 'logat:index' %}" method = "POST">
+                                    {% csrf_token %}
+                                 {% if error_message %}
+                      <div class="alert alert-danger">
+                    <p class= "text-center">{{ error_message }}</p>
+                        {% endif %}
+                      </div>
+               </div>
+                      <div class="alt1" style="margin-top:-13px;">
+                           <div class="input-group" >
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input type="text" class="form-control" name= "username" value class="text" maxlength="255" placeholder="Username" autocorrect="off" autocapitalize="off" tabindex="2" required autofocus>
+                          </div>  <!--end input group -->
+                       </div> <!--end alt1 -->
 
-					  <div class="alt">
-						  <div class="input-group">
-							<h5><a href = "{% url 'logat:register' %}"> Not a member yet? Sign up</a></h5>
-								<span class="pull-right">
-								  <button type="submit" class="btn btn-primary">
-							  <i class= "glyphicon glyphicon-lock"></i> Log In </button></span>
-						   </div>
-					  </div>   
-		  </div> <!-- end class panel body -->
-		</div>  
-			</div> <!-- end class row -->
-			  </div> <!-- end class col --> 
-		</form>
+                      <div class="alt2">
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input type="password" class="form-control" name="password" value class="text" placeholder="Password" maxlength="255" autocorrect="off" autocapitalize="off" tabindex="2" required autofocus>
+                          </div> <!--end input group -->
+                       </div> <!--end alt2  -->
 
+                <div class="form-group">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <div class="checkbox" id= "remember">
+                                <label>
+                                    <input type="checkbox"/> Remember me
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                      <div class="alt">
+                          <div class="input-group">
+                                 <span>
+                                    <button class="btn btn-lg btn-primary" type="submit">Log in</button>  
+                                    </br></br>
+                                    <h5><a href = "{% url 'logat:register' %}"><center> Not a member yet? Sign up</a></center></h5>
+                           </div>
+                      </div>   
+          </div> <!-- end class panel body -->
+        </div>  
+            </div> <!-- end class row -->
+              </div> <!-- end class col --> 
+        </form>
 </body>
 </html>
+
+ 

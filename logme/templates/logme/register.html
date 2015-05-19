@@ -9,7 +9,7 @@
 
 	   
 	   	<link href="{{ STATIC_URL }}/logme/css/bootstrap.min.css" rel="stylesheet">
-   		<link href="{{STATIC_URL}}/logme/css/style.css" rel="stylesheet">
+   		<link href="{{STATIC_URL}}/logme/css/register.css" rel="stylesheet">
    		<link href="{{STATIC_URL}}/logme/js/bluff.js" rel="stylesheet">
 
  </head>
@@ -17,9 +17,10 @@
 <body>
 		
 		 </br></br></br>
-        <div class="container">
-             <div class="row centered-form">
-              <div class="col-sm-6 col-md-5 col-md-offset-4">
+         <div class="container">
+            <div class="row">           
+              <div class="col-sm-4 col-md-5 col-md-offset-4">
+        	    <div class="form-wrap">
                 <h1 class="text-center login-title"><strong>Create Account</strong></h1>
 					</br></br></br>
                 	<div class="form-group">
@@ -45,7 +46,7 @@
 			<div class="form-group">
 				<input type="password" class="form-control" placeholder="Password" name="{{ form.password1.html_name}}" required>
 			 			{% if form.password1.errors %}
-			 			<div style="margin-top:-13px;"><div class="alert alert-danger"><p class="error">
+			 			<div style="margin-top:13px;"><div class="alert alert-danger"><p class="error">
 			 			{{ form.password1.errors }}
 			 				</p>{% endif %}
     				<p><label for="password1"{% if form.password.errors %} class="error"{% endif %}></label></p>
@@ -54,7 +55,7 @@
 			<div class="form-group">
 				<input type="password" class="form-control" placeholder="Confirm Password" name="{{ form.password2.html_name}}" required> 
 						{% if form.password2.errors %}
-			 			<div style="margin-top:-13px;"><div class="alert alert-danger"><p class="error">
+			 			<div style="margin-top:13px;"><div class="alert alert-danger"><p class="error">
 			 			{{ form.password2.errors }}
 			 				</p>{% endif %}
     			<p><label for="password2"{% if form.password.errors %} class="error"{% endif %}></label></p>
@@ -64,10 +65,10 @@
 				<input type="email" class="form-control" placeholder="Email Address" name="{{ form.email.html_name}}"required>
 			</div>
 
-  				 <span class="pull-right"><button type="submit" class="btn btn-success"><span class= "glyphicon glyphicon-ok"></span> Submit</button>
+            
+  				 <span class="pull-right"><button type="submit" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-download-alt"></i></button>
 
-  				<a href = "{%url 'logat:index' %}"><button type="button" class="btn btn-primary">Log in</button></a>
-
+  				<a href = "{%url 'logat:index' %}"><button type="button" class="btn btn-primary btn-circle btn-lg"><i class="glyphicon glyphicon-user"></i></button>
 
 				</div>
 			</div>
