@@ -33,8 +33,7 @@ class History(models.Model):
 		
 		time_difference = self.timeout - self.timein
 
-		print time_difference
-		return datetime.strptime("time_difference", "%H:%M:%S")
+		return time_difference
 
 	def __unicode__(self):
 		return '{0}' .format('Timelog')
@@ -46,7 +45,9 @@ class Total(models.Model):
 
 	@property
 	def salarytotal(self):
-		daysalary =  5* self.account.rate
+		time =  str(self.today_total)
+		print time
+		daysalary =  int(time.split(":")[0]) * self.account.rate
 		return daysalary
 
 	def __unicode__(self):

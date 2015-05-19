@@ -27,6 +27,8 @@
                             </strong>
                             <th><div class="panel-heading"><h4><strong><p class= "text-center"> Total Time Logged 
                             </th></p></strong>
+                              <th><div class="panel-heading"><h4><strong><p class= "text-center"> Day Salary 
+                            </th></p></strong>
                         </tr>
                     </thead>
                             {% for displayed in display %}
@@ -35,6 +37,7 @@
                         <tr>
                             <td><h5><p class= "text-center"> {{ displayed.today_in }} </p></h5></td>
                             <td><h5><p class= "text-center"> {{ displayed.today_total }}</p></h5></td>
+                            <td><h5><p class= "text-center"> {{ displayed.salarytotal}}</p></h5></td>
                         </tr>
                             {% endfor %}
                     </tbody>
