@@ -38,36 +38,42 @@ class Index(generic.TemplateView):
 
 
 		if user is not None:
-
-			if user.is_superuser:
-				auth.login(request, user)
-				return redirect('logat:admin')
-
-			else:
-
-				try:				
-					account = Account.objects.get(user=user)
-					count = user.account.total.filter(today_in=datetime.date.today()).count()
-					
-
-				except ObjectDoesNotExist:
-					return render(request, 'logme/form.html', {
-		            'error_message': "Please Contact the Administrator for Activation",
-		        	})
+			userstatus = Account.objects.get(user=user).status
 			
-				else:				
-					auth.login(request,user)
-					account.status='online'
-					account.save()				
-					log = History(account=account)
-					log.save()
+			if userstatus=='offline':
 
-					if count == 0:
-						todate=Total(account=account)
-						todate.save()
+				if user.is_superuser:
+					auth.login(request, user)
+					return redirect('logat:admin')
 
-					return redirect('logat:home')
+				else:
 
+					try:				
+						account = Account.objects.get(user=user)
+						count = user.account.total.filter(today_in=datetime.date.today()).count()
+						
+
+					except ObjectDoesNotExist:
+						return render(request, 'logme/form.html', {
+			            'error_message': "Please Contact the Administrator for Activation",
+			        	})
+				
+					else:				
+						auth.login(request,user)
+						account.status='online'
+						account.save()				
+						log = History(account=account)
+						log.save()
+
+						if count == 0:
+							todate=Total(account=account)
+							todate.save()
+
+						return redirect('logat:home')
+			else:
+				return render(request, 'logme/form.html', {
+            'error_message': "Account is Already login.",
+        })
 
 		else:
 			 return render(request, 'logme/form.html', {
@@ -83,8 +89,10 @@ class Home_Page(generic.TemplateView):
 
     def get(self, request):
 
+   		checking = self.request.user.account.status
+   		print checking
 		if request.user.is_authenticated():
-
+			
 			searching = request.GET.get('months')		
 
 			getting_last_history = self.request.user.account.history.last()
