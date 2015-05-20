@@ -46,7 +46,6 @@ class Total(models.Model):
 	@property
 	def salarytotal(self):
 		time =  str(self.today_total)
-		print time
 		daysalary =  int(time.split(":")[0]) * self.account.rate
 		return daysalary
 

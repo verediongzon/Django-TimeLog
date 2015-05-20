@@ -82,11 +82,18 @@ class Home_Page(generic.TemplateView):
 
 
     def get(self, request):
+
 		if request.user.is_authenticated():
 
+			searching = request.GET.get('months')		
 
 			getting_last_history = self.request.user.account.history.last()
-			sorting_history = self.request.user.account.history.filter(timein__month="05").order_by("-timein")
+
+			if searching:
+				sorting_history = self.request.user.account.history.filter(timein__month=searching).order_by("-timein")
+
+			else:
+				sorting_history = self.request.user.account.history.order_by('-timein')
 
 			getting_last_history.timeout = timezone.now()
 			getting_last_history.save()
@@ -118,6 +125,7 @@ class Home_Page(generic.TemplateView):
     def post(self, request):
 		
 		if request.POST.get('logout'):	
+
 
 			logout=self.request.user.account.history.last()
 			
@@ -152,12 +160,21 @@ class Home_Page(generic.TemplateView):
 			return redirect('logat:index')
 
 		if request.POST.get('history'):
+
 			return redirect('logat:history')
 
 		if request.POST.get('cpass'):
 			return redirect('logat:change_password')
 
+		if request.POST.get('search2'):
 
+			months = request.POST.get('month','')
+
+			home_url = "{}?months={}".format(reverse('logat:home'), months)
+
+			return HttpResponseRedirect(home_url)
+
+			
 
 class Register(generic.FormView):
     template_name = 'logme/register.html'
