@@ -2,53 +2,146 @@
 
 
 body {
-    background-color: white;
-  	
+
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
+
+}
+
+.form-signin {
+    max-width: 280px;
+    padding: 15px;
+    margin: 0 auto;
 }
 
 .alt1 {
 
 	font-family: 'Source Sans Pro', sans-serif;
-    font-style: normal;
+  font-style: normal;
 	margin: 10px;
+
+}
+
+.alt1 input {
+
+	height: 40px !important;
 
 }
 
 .alt2 {
 
 	font-family: 'Source Sans Pro', sans-serif;
-    font-style: normal;
+  font-style: normal;
 	margin: 10px;
+
+}
+
+.alt2 input {
+
+	height: 40px !important;
+
 }
 
 .alt .input-group {
 
-	font-family: 'Source Sans Pro', sans-serif;
     font-style: normal;
     width: 100%;
 }
 
+.panel-body {
+
+   margin-top: 180px;
+
+}
+
+.btn-primary {
+
+  width: 100%;
+
+}
+
 .jumbotron {
+
     background-color: white;
+
 }
 
 .form-control {
 
 	font-family: 'Source Sans Pro', sans-serif;
-    font-style: normal;
+  font-style: normal;
+
 }
 
-.panel-primary{
+.panel-primary {
+
 	margin-bottom: 0px;
+
 }
 
 .panel-body {
 
   padding: 6px;
+
 }
 
 .jumbotron .btn-primary {
 
 	margin-right: 8px; 
 	border-radius: 24px;
+
+}
+
+#register .form-control {
+
+	margin: 10px;
+
+}
+
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+  
+}
+
+.navbar-inverse {
+
+  padding: 5px;
+
+}
+
+.dropdown-menu {
+
+  margin-top: 5px !important;
+
+}
+
+
+.edit-con {
+
+  margin-top: 90px;
+
+}
+
+.button {
+
+  margin-left: 10px;
+
+}
+
+.glyphicon-cog {
+
+  margin-right: 50px;
+
+}
+
+.navbar-brand {
+
+  margin-left: 50px !important;
+
 }

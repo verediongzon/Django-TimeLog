@@ -1,1 +1,1 @@
-/home/kristoff/django-TimeLog/logme/static/logme/js/bootstrap.js
+/home/kristoff/Pictures/Django-TimeLog/logme/static/logme/js/bootstrap.js

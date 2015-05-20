@@ -11,13 +11,13 @@ class RegistrationForm(user_forms.UserCreationForm):
     def clean_password1(self):
         password1 = self.cleaned_data.get('password1', '')
         if len(password1) < 6:
-            raise forms.ValidationError("Password must have at least 6 characters.")
+            raise forms.ValidationError("Password must be at least 6 characters.")
         return password1
         
     def clean_password2(self):
         password2 = self.cleaned_data.get('password2', '')
         if len(password2) < 6:
-            raise forms.ValidationError("Password must have at least 6 characters.")
+            raise forms.ValidationError("Password must be at least 6 characters.")
         return password2
  
 class PasswordChangeForm(user_forms.SetPasswordForm):    
@@ -36,11 +36,11 @@ class PasswordChangeForm(user_forms.SetPasswordForm):
         new_password1 = self.cleaned_data.get('new_password1', '')
         print self.cleaned_data.get('new_password1')
         if len(new_password1) < 6:
-            raise forms.ValidationError("Password must have at least 6 characters.")
+            raise forms.ValidationError("Password must be at least 6 characters.")
         return new_password1
         
     def clean_new_password2(self):
         new_password2 = self.cleaned_data.get('new_password2', '')
         if len(new_password2) < 6:
-            raise forms.ValidationError("Password must have at least 6 characters.")
+            raise forms.ValidationError("Password must be at least 6 characters.")
         return new_password2

@@ -17,33 +17,48 @@
 <body>
 
     <div class="container">
-       
             {% csrf_token %}
-
-            <table class="table table-condensed">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="{% url 'logat:home' %}">Web Developers Time Log</a>
+                        </div>
+                    </div>
+        </nav>
+    <div class="container">
+            <table class="table table-responsive">
                     <thead>
                         <tr>
+<<<<<<< HEAD
                             <th><div class="panel-heading"><h4><strong><p class= "text-center"> Dates </th></p>
                             </strong>
                             <th><div class="panel-heading"><h4><strong><p class= "text-center"> Total Time Logged 
                             </th></p></strong>
                               <th><div class="panel-heading"><h4><strong><p class= "text-center"> Day Salary 
                             </th></p></strong>
+
                         </tr>
                     </thead>
                             {% for displayed in display %}
                     <tbody> 
                         <br>
+<<<<<<< HEAD
                         <tr>
                             <td><h5><p class= "text-center"> {{ displayed.today_in }} </p></h5></td>
                             <td><h5><p class= "text-center"> {{ displayed.today_total }}</p></h5></td>
                             <td><h5><p class= "text-center"> {{ displayed.salarytotal}}</p></h5></td>
+
                         </tr>
                             {% endfor %}
                     </tbody>
             </table>
-                       <a href="{% url 'logat:home' %}">  <button type ="submit" class= "btn btn-primary" > back </button>
-     
+    </div>
     </div>
 </body>
 </html>
