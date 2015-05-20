@@ -1,28 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime, timedelta
-import datetime
-from datetime import datetime
 
 
 class Account(models.Model):
-	OJT = 'OJT'
-	REG = 'RE'
-	UNREG = 'URE'
-	EMPLOYEE_CHOICE = (
-		(OJT, 'OJT'),
-		(REG, 'Regular'),
-		(UNREG, 'Not Regular'),
-	)
-
-
-	classtype = models.CharField(max_length=5,
-									choices = EMPLOYEE_CHOICE,
-									default = REG)
 	
 	user = models.OneToOneField(User, related_name='account')
-
 	status = models.CharField(max_length=10, default='offline')
+	employee_type = models.CharField(max_length=20)
+	rate = models.IntegerField(default=0)
 
 	@property
 	def fullname(self):
@@ -44,8 +30,9 @@ class History(models.Model):
 			partial = timedelta(0)
 			return partial
 
-		time_difference = (self.timeout - self.timein)
-	
+		
+		time_difference = self.timeout - self.timein
+
 		return time_difference
 
 	def __unicode__(self):
@@ -55,6 +42,13 @@ class Total(models.Model):
 	account = models.ForeignKey(Account, related_name='total')
 	today_in = models.DateField(auto_now_add=True)
 	today_total = models.CharField(max_length=100)
+
+	@property
+	def salarytotal(self):
+		time =  str(self.today_total)
+		print time
+		daysalary =  int(time.split(":")[0]) * self.account.rate
+		return daysalary
 
 	def __unicode__(self):
 		return '{0}' .format('Totals')

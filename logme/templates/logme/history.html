@@ -35,18 +35,22 @@
             <table class="table table-responsive">
                     <thead>
                         <tr>
-                            <th><div class="panel-heading"><h3><strong><p class= "text-center"> Dates </th></p>
-                            </strong></h3></th>
-                            <th><div class="panel-heading"><h3><strong><p class= "text-center"> Total Time Logged 
-                            </th></p></strong></h3>
+                            </br></br></br>
+                            <th><div class="panel-heading"><h4><strong><p class= "text-center"> Dates </th></p>
+                            </strong>
+                            <th><div class="panel-heading"><h4><strong><p class= "text-center"> Total Time Logged 
+                            </th></p></strong>
+                              <th><div class="panel-heading"><h4><strong><p class= "text-center"> Day Salary 
+                            </th></p></strong>
                         </tr>
                     </thead>
                             {% for displayed in display %}
                     <tbody> 
                         <br>
-                        <tr class="list">
-                                <td><h5><p class= "text-center"> {{ displayed.today_in }} </p></h5></td>
-                                <td><h5><p class= "text-center"> {{ displayed.today_total }} </p></h5></td>
+                        <tr>
+                            <td><h5><p class= "text-center"> {{ displayed.today_in }} </p></h5></td>
+                            <td><h5><p class= "text-center"> {{ displayed.today_total }}</p></h5></td>
+                            <td><h5><p class= "text-center"> {{ displayed.salarytotal}}</p></h5></td>
                         </tr>
                             {% endfor %}
                     </tbody>

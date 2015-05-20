@@ -93,8 +93,7 @@ class Home_Page(generic.TemplateView):
 			timein = getting_last_history.timein
 			str(timein)
 			datenow = timein.strftime('%Y-%m-%d')
-	
-			
+				
 			filtered_history = self.request.user.account.history.filter(timein__startswith=datenow)
 
 			
@@ -106,8 +105,11 @@ class Home_Page(generic.TemplateView):
 
 			
 			today = self.request.user.account.total.last()
+			
 			today.today_total = today_total
 			today.save()
+
+
 
 
 			return self.render_to_response({'sorts':sorting_history, 'timein':timein,'today_total':today_total})
@@ -128,7 +130,8 @@ class Home_Page(generic.TemplateView):
 			timein = getting_last_history.timein
 			str(timein)
 			datenow = timein.strftime('%Y-%m-%d')
-	
+
+
 			filtered_history = self.request.user.account.history.filter(timein__startswith=datenow)
 
 			today_total = timedelta(0)

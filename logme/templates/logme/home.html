@@ -24,16 +24,16 @@
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#">Web Developers Time Log</a>
+                            <a class="navbar-brand">Web Developers Time Log</a>
                         </div>
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
+                             <a class="navbar-brand" href="{%url 'logat:history' %}">History</a>
                                  <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="glyphicon glyphicon-cog"><span class="caret"></i></span></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="glyphicon glyphicon-cog"><span class="caret"></i></span></a>
                                 <ul class="dropdown-menu" role="menu">
                             <li><a href="{%url 'logat:change_password' %}"><center>Change Password</center></a></li>
-                            <li><a href="{%url 'logat:history' %}"><center>History</center></a></li>
                         <li class="divider"></li>
                     <li><a href="{%url 'logat:home' %}"><center><input type="submit" name="logout" value ='Logout'/></center></a></li>
                                 </ul>
@@ -50,7 +50,7 @@
                             <h5><p class= "text-center"> <strong> Today's Total Time:</strong> {{ today_total }}</h5>
             </div> <!-- end of container -->
     
-            </br></br>
+            </br></br></br></br>
             <div class = "container">
                 <table class="table table-hover">
                 <thead>
