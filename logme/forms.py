@@ -25,6 +25,7 @@ class RegistrationForm(user_forms.UserCreationForm):
         if len(password2) < 6:
             raise forms.ValidationError("Password must be at least 6 characters.")
         return password2
+
  
 class PasswordChangeForm(user_forms.SetPasswordForm):    
     
@@ -47,7 +48,6 @@ class PasswordChangeForm(user_forms.SetPasswordForm):
    
     def clean_new_password1(self):
         new_password1 = self.cleaned_data.get('new_password1', '')
-        print self.cleaned_data.get('new_password1')
         if len(new_password1) < 6:
             raise forms.ValidationError("Password must be at least 6 characters.")
         return new_password1
