@@ -13,7 +13,7 @@ from django.views.generic.edit import FormView
 from datetime import timedelta
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
-
+from django.contrib.sessions.models import Session
 
 from logme.forms import RegistrationForm, PasswordChangeForm
 
@@ -41,6 +41,7 @@ class Index(generic.TemplateView):
 
 		if user is not None:
 
+			
 			if user.is_superuser:
 				auth.login(request, user)
 				return redirect('logat:admin')
@@ -49,26 +50,46 @@ class Index(generic.TemplateView):
 
 				try:				
 					account = Account.objects.get(user=user)
-					count = user.account.total.filter(today_in=datetime.date.today()).count()
-					
+					count = user.account.total.filter(today_in=datetime.date.today()).count()						
 
 				except ObjectDoesNotExist:
 					return render(request, 'logme/form.html', {
-		            'error_message': "Please Contact the Administrator for Activation",
+				    'error_message': "Please Contact the Administrator for Activation",
+				})
+					
+				else:
+					getuser = Account.objects.get(user=user)
+					userstatus = getuser.status
+					if userstatus=='offline':				
+
+						auth.login(request,user)
+						account.status='online'
+						account.save()				
+						log = History(account=account)
+						log.save()
+
+						if count == 0:
+							todate=Total(account=account)
+							todate.save()
+
+						return redirect('logat:home')
+						
+					else:
+						loguser = User.objects.get(username=username)
+
+						[s.delete() for s in Session.objects.all() if s.get_decoded().get('_auth_user_id') == loguser.id]
+
+						getuser.status = 'offline'
+						getuser.save()
+
+						return render(request, 'logme/form.html', {
+		            	'error_message': "Account is Already login.",
 		        	})
-			
-				else:				
-					auth.login(request,user)
-					account.status='online'
-					account.save()				
-					log = History(account=account)
-					log.save()
 
-					if count == 0:
-						todate=Total(account=account)
-						todate.save()
-
-					return redirect('logat:home')
+		else:
+			 return render(request, 'logme/form.html', {
+            'error_message': "Username/Password Invalid. Please Try Again.",
+        })
 	
 
 
@@ -80,12 +101,11 @@ class Home_Page(generic.TemplateView):
     def get(self, request):
 
    		if request.user.is_authenticated():
-			
+
 			searching = request.GET.get('months')
 			if searching=='00':
 				searching = timezone.now().month
-				print searching
-											
+				
 			getting_last_history = self.request.user.account.history.last()
 
 			if searching:			

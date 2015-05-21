@@ -1,0 +1,44 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300);
+
+.navbar-inverse {
+
+  padding: 5px;
+
+}
+
+.dropdown-menu {
+
+  margin-top: 5px !important;
+
+}
+
+
+.edit-con {
+
+  margin-top: 100px;
+
+}
+
+.button {
+
+  margin-left: 10px;
+
+}
+
+.glyphicon-cog {
+
+  margin-right: 50px;
+
+}
+
+.navbar-brand {
+
+  margin-left: 50px !important;
+
+}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus {
+  background-color: transparent !important;
+
+}
+

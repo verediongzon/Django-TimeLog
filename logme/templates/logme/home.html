@@ -1,55 +1,65 @@
 <!DOCTYPE html>
 {% load staticfiles %}
 <html lang="en">
-    
+	
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <link href="{{ STATIC_URL }}/logme/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{STATIC_URL}}/logme/css/style.css" rel="stylesheet">
+	<link href="{{ STATIC_URL }}/logme/css/bootstrap.min.css" rel="stylesheet">
+	<link href="{{STATIC_URL}}/logme/css/style.css" rel="stylesheet">
 
 </head> 
-    <body>
-            <form action="{% url 'logat:home' %}" method="POST"> 
-                {% csrf_token %}
+	<body>
+			<form action="{% url 'logat:home' %}" method="POST"> 
+				{% csrf_token %}
 
-                <nav class="navbar navbar-inverse navbar-fixed-top">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" href="{% url 'logat:home' %}">Web Developers Time Log</a>
-                        </div>
+				<nav class="navbar navbar-inverse navbar-fixed-top">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+									<span class="sr-only">Toggle navigation</span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="{% url 'logat:home' %}">Web Developers Time Log</a>
+						</div>
 
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav navbar-right">
-                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="glyphicon glyphicon-cog"><span class="caret"></i></span></a>
-                                <ul class="dropdown-menu" role="menu">
-                            <li><a href="{%url 'logat:change_password' %}"><center>Change Password</center></a></li>
-                            <li><a href="{%url 'logat:history' %}"><center>History</center></a></li>
-                        <li class="divider"></li>
-                    <li><a href="{%url 'logat:home' %}"><center><input type="submit" name="logout" value ='Logout'/></center></a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                    </div><!-- /.container-fluid -->
-                </nav>
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav navbar-right">
+							 <a class="navbar-brand" href="{%url 'logat:history' %}">History</a>
+								 <li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="glyphicon glyphicon-cog"><span class="caret"></i></span></a>
+								<ul class="dropdown-menu" role="menu">
+							<li><a href="{%url 'logat:change_password' %}"><center>Change Password</center></a></li>
+						<li class="divider"></li>
+					<li><a href="{%url 'logat:home' %}"><center><input type="submit" name="logout" value ='Logout'/></center></a></li>
+								</ul>
+							</li>
+						</ul>
+					<div class="col-sm-3 col-md-3 pull-right">
+						 <form class="navbar-form" role="search">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Search" name="search2">
+									
+									<div class="input-group-btn">
+										<button class="btn btn-default" type="submit" name="search2" value="Search"><i class="glyphicon glyphicon-search"></i></button>
+									</div>
+							</div>
+						</form>
+					</div>
+						</div><!-- /.navbar-collapse -->
+					</div><!-- /.container-fluid -->
+				</nav>
 
-            <div class="container edit-con">
-                <h1><p class= "text-center"><strong> {{user.first_name}} {{user.last_name}} </strong></p></h1>
-                    <br>
-                        <h5><p class= "text-center"> <strong>Logged on: </strong> {{timein}}</p></h5>
-                            <h5><p class= "text-center"> <strong> Today's Total Time:</strong> {{ today_total }}</h5>
-            </div> <!-- end of container -->
-
+			<div class="container edit-con">
+				<h1><p class= "text-center"><strong> {{user.first_name}} {{user.last_name}} </strong></p></h1>
+					<br>
+						<h5><p class= "text-center"> <strong>Logged on: </strong> {{timein}}</p></h5>
+							<h5><p class= "text-center"> <strong> Today's Total Time:</strong> {{ today_total }}</h5>
+			</div> <!-- end of container -->
 
             <input type='submit' name='search2' value='Search by'/>
             <select name='month'>

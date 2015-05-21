@@ -1,26 +1,55 @@
-<html>
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
 
-<body>
+    <title>Log In</title>
 
-    <table align='center' style='width:50%'>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <tr>
-            <th> Dates </th>
-            <th> Total Time Logged </th>
-            <th> Day Salary </th>
-        </tr>
-        {% for show in u_total_show %}
-        <tr>
-            <td> {{ show.today_in }} </td>
-            <td> {{ show.today_total }} </td>
-            <td> {{ show.salarytotal }} </td>
-        </tr>
-        {% endfor %}
-
-        <a href="{% url 'logat:admin' %}" ><button> Back </button>
-
+    <link href="{{ STATIC_URL }}/logme/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}/logme/css/histories.css" rel="stylesheet">
     
-    </table>
+</head>
+        <body>
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand">Days Total</a>
+                        </div>
 
-</body>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                                <a class="navbar-brand" href="{% url 'logat:admin' %}">Back to Admin</a>     
+                            </li>
+                        </ul>
+                    </div><!-- /.container-fluid -->
+            </nav>
+
+                    </br></br>git 
+                    <div class="container edit-con">
+                        <table class="table table-hover">
+                             <thead>
+                                <tr>
+                                    <th><div class="panel-heading"><h3><strong><p class= "text-center">Dates </strong></h3></div></th>
+                                    <th><div class="panel-heading"><h3><strong><p class= "text-center">Total Time Logged </strong></h3></div></th>
+                                    <th><div class="panel-heading"><h3><strong><p class= "text-center">Salary </strong></h3></div></th>
+                                </tr>
+                                      {% for show in u_total_show %}
+                                <tr>
+                                    <td><h5><p class= "text-center">{{ show.today_in }} </td>
+                                    <td><h5><p class= "text-center"> {{ show.today_total }} </td>
+                                    <td><h5><p class= "text-center"> {{ show.salarytotal }} </td>
+                                </tr>
+                                        {% endfor %}
+                        </table>
+        </body>
 </html>

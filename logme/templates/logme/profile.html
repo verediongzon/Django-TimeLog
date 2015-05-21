@@ -1,37 +1,55 @@
-<html>
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
 
-<body>
+    <title>Log In</title>
 
-	<table style ='width:50%' align='center'>
-		<tr>
-			<th>Time in</th>
-			<th>Time out</th>
-			<th>Time Total</th>
-		</tr>
-	
-			
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-			{% for showing in show_history %}
-			
-				<tr>
-					<td>{{showing.timein}}</td>
-					<td>{{showing.timeout}}</td>
-					<td>{{showing.totaltime}}</td>
-						
-			
-			{% endfor %}
+    <link href="{{ STATIC_URL }}/logme/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{STATIC_URL}}/logme/css/histories.css" rel="stylesheet">
+    
+</head>
+        <body>
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand">Days Total</a>
+                        </div>
 
-		 
-				</tr>
-
-
-			<a href="{% url 'logat:admin' %}" ><button> Back </button>
-
-			
-		
-	</table>
-
-</body>
-
-
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                                <a class="navbar-brand" href="{% url 'logat:admin' %}">Back to Admin</a>     
+                            </li>
+                        </ul>
+                    </div><!-- /.container-fluid -->
+            </nav>
+ 				</br></br>
+                    <div class="container edit-con">
+                        <table class="table table-hover">
+                        	<thead>
+								<tr>
+									<th><div class="panel-heading"><h3><strong><p class= "text-center">Time in </strong></h3></div></th>
+									<th><div class="panel-heading"><h3><strong><p class= "text-center">Time out </strong></h3></div></th>
+									<th><div class="panel-heading"><h3><strong><p class= "text-center">Time Total </strong></h3></div></th>
+								</tr>
+											{% for showing in show_history %}
+								<tr>
+									<td><h5><p class= "text-center"> {{showing.timein}}</td>
+									<td><h5><p class= "text-center"> {{showing.timeout}}</td>
+									<td><h5><p class= "text-center"> {{showing.totaltime}}</td>
+											 
+											 {% endfor %}
+								</tr>
+						</table>
+		</body>
 </html>

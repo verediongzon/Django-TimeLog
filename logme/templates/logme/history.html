@@ -36,18 +36,22 @@
                     <thead>
                         <tr>
 
+                            </br></br></br>
+
+
                             <th><div class="panel-heading"><h4><strong><p class= "text-center"> Dates </th></p>
                             </strong>
                             <th><div class="panel-heading"><h4><strong><p class= "text-center"> Total Time Logged 
                             </th></p></strong>
                               <th><div class="panel-heading"><h4><strong><p class= "text-center"> Day Salary 
                             </th></p></strong>
-
                         </tr>
-                    </thead>
-                            
+                    </thead>                    
                     <tbody> 
+                        <br>
+
                             {% for displayed in display %}
+
                         <tr>
                             <td><h5><p class= "text-center"> {{ displayed.today_in }} </p></h5></td>
                             <td><h5><p class= "text-center"> {{ displayed.today_total }}</p></h5></td>
