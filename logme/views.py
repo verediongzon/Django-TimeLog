@@ -40,51 +40,36 @@ class Index(generic.TemplateView):
 		user = auth.authenticate(username=username, password=password)
 
 		if user is not None:
-			userstatus = Account.objects.get(user=user).status
-			
 
-			if userstatus=='offline':
-				
+			if user.is_superuser:
+				auth.login(request, user)
+				return redirect('logat:admin')
 
-				if user.is_superuser:
-					auth.login(request, user)
-					return redirect('logat:admin')
-
-				else:
-
-					try:				
-						account = Account.objects.get(user=user)
-						count = user.account.total.filter(today_in=datetime.date.today()).count()
-						
-
-					except ObjectDoesNotExist:
-						return render(request, 'logme/form.html', {
-			            'error_message': "Please Contact the Administrator for Activation",
-			        	})
-				
-					else:				
-						auth.login(request,user)
-						account.status='online'
-						account.save()				
-						log = History(account=account)
-						log.save()
-
-						if count == 0:
-							todate=Total(account=account)
-							todate.save()
-
-						return redirect('logat:home')
 			else:
 
-				return render(request, 'logme/form.html', {
-            'error_message': "Account is Already login.",
-        })
+				try:				
+					account = Account.objects.get(user=user)
+					count = user.account.total.filter(today_in=datetime.date.today()).count()
+					
 
-		else:
-			 return render(request, 'logme/form.html', {
-            'error_message': "Username/Password Invalid. Please Try Again.",
-        })
+				except ObjectDoesNotExist:
+					return render(request, 'logme/form.html', {
+		            'error_message': "Please Contact the Administrator for Activation",
+		        	})
+			
+				else:				
+					auth.login(request,user)
+					account.status='online'
+					account.save()				
+					log = History(account=account)
+					log.save()
 
+					if count == 0:
+						todate=Total(account=account)
+						todate.save()
+
+					return redirect('logat:home')
+	
 
 
 class Home_Page(generic.TemplateView):
