@@ -59,7 +59,7 @@
 						{% for displays in display %}
 
 							<tr>
-								<td><h5><p class= "text-center">{{ displays.id }} </p></h5></td>
+								<td><h5><p class= "text-center"> {{ displays.id }} </p></h5></td>
 								<td><h5><p class= "text-center"> {{ displays.user }} </p></h5></td>
 								<td><h5><p class= "text-center"> {{ displays.user.first_name }} {{displays.user.last_name }} </p></h5></td>
 								<td><h5><p class= "text-center"> {{ displays.user.email }} </p></h5></td>
@@ -74,16 +74,13 @@
 					 			<span style="padding-left:7px;"><input type = 'submit' name='history' value='Log History'></span>
 									<span style="padding-left:5px;"><input type = 'submit' name='daytotal' value='Days Total'></span>
 				 					 	<span style="padding-left:5px;"><input type = 'hidden' name='naming' value='{{ displays.pk }}'> </span>
-
 									</form>
 								</td>
- 			{% endfor %}
-		
-			</tr>
-
-		</table>
+ 						{% endfor %}
+						</tr>
+				</table>
 		</div>
-			 <script src="{{STATIC_URL}}logme/js/jquery-1.7.1.min.js"></script>
+		<script src="{{STATIC_URL}}logme/js/jquery-1.7.1.min.js"></script>
     	<script src="{{STATIC_URL}}logme/js/bootstrap.js"></script>
 	</body>
 </html>

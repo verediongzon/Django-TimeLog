@@ -42,26 +42,14 @@
 									<th><div class="panel-heading"><h3><strong><p class= "text-center">Time out </strong></h3></div></th>
 									<th><div class="panel-heading"><h3><strong><p class= "text-center">Time Total </strong></h3></div></th>
 								</tr>
-	
-			
-
-			{% for showing in show_history %}
-			
-				<tr>
-					<td>{{showing.timein}}</td>
-					<td>{{showing.timeout}}</td>
-					<td>{{showing.totaltime}}</td>
-						
-			
-			{% endfor %}
-
-		 
-				</tr>
-
-		
-	</table>
-
-</body>
-
-
+											{% for showing in show_history %}
+								<tr>
+									<td><h5><p class= "text-center"> {{showing.timein}}</td>
+									<td><h5><p class= "text-center"> {{showing.timeout}}</td>
+									<td><h5><p class= "text-center"> {{showing.totaltime}}</td>
+											 
+											 {% endfor %}
+								</tr>
+						</table>
+		</body>
 </html>
