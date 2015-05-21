@@ -16,9 +16,9 @@ from django.core.urlresolvers import reverse
 
 from logme.forms import RegistrationForm, PasswordChangeForm
 
-
 class Index(generic.TemplateView):
     template_name = 'logme/form.html'
+    
 
     def get(self, request):
 
@@ -36,11 +36,11 @@ class Index(generic.TemplateView):
 		password = request.POST.get('password', '')
 		user = auth.authenticate(username=username, password=password)
 
-
 		if user is not None:
 			userstatus = Account.objects.get(user=user).status
 			
-			if userstatus=='offline':
+
+			if userstatus=='offline':				
 
 				if user.is_superuser:
 					auth.login(request, user)
@@ -71,6 +71,7 @@ class Index(generic.TemplateView):
 
 						return redirect('logat:home')
 			else:
+
 				return render(request, 'logme/form.html', {
             'error_message': "Account is Already login.",
         })
@@ -89,15 +90,16 @@ class Home_Page(generic.TemplateView):
 
     def get(self, request):
 
-   		checking = self.request.user.account.status
-   		print checking
-		if request.user.is_authenticated():
+   		if request.user.is_authenticated():
 			
-			searching = request.GET.get('months')		
-
+			searching = request.GET.get('months')
+			if searching=='00':
+				searching = timezone.now().month
+				print searching
+											
 			getting_last_history = self.request.user.account.history.last()
 
-			if searching:
+			if searching:			
 				sorting_history = self.request.user.account.history.filter(timein__month=searching).order_by("-timein")
 
 			else:
@@ -177,7 +179,7 @@ class Home_Page(generic.TemplateView):
 		if request.POST.get('search2'):
 
 			months = request.POST.get('month','')
-
+		
 			home_url = "{}?months={}".format(reverse('logat:home'), months)
 
 			return HttpResponseRedirect(home_url)
