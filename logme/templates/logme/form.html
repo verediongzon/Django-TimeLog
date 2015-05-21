@@ -29,6 +29,13 @@
                     <div class="panel-body">
                         
                         <div class="form-group">
+                          {% if messages %}
+                            <ul class="messages">
+                              {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                              {% endfor %}
+                            </ul>
+                          {% endif %}
                             <form action = "{%url 'logat:index' %}" method = "POST">
                                     {% csrf_token %}
                                  {% if error_message %}
@@ -37,6 +44,7 @@
                         {% endif %}
                       </div>
                </div>
+
                       <div class="alt1" style="margin-top:-13px;">
                            <div class="input-group" >
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -72,7 +80,9 @@
           </div> <!-- end class panel body -->
         </div>  
             </div> <!-- end class row -->
-              </div> <!-- end class col --> 
+              </div> 
+              
+                      <!-- end class col --> 
         </form>
 </body>
 </html>

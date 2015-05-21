@@ -4,11 +4,12 @@ from django.views import generic
 from django.contrib import auth
 from django.shortcuts import render, redirect, render_to_response, get_object_or_404
 from django.contrib.auth import authenticate, login, logout, forms as user_forms
+from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.models import User
 from logme.models import Account, History, Total
 from django.utils import timezone
 from django.template import Context
-from django.views.generic import FormView
+from django.views.generic.edit import FormView
 from datetime import timedelta
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
@@ -176,10 +177,11 @@ class Home_Page(generic.TemplateView):
 
 			
 
-class Register(generic.FormView):
+class Register(SuccessMessageMixin, generic.FormView):
     template_name = 'logme/register.html'
     form_class = RegistrationForm
     success_url = '/'
+    success_message = "Your account was created successfully. Wait for Admin confirmation."
 
     def post(self, request):
         form_class = self.get_form_class()
@@ -190,7 +192,6 @@ class Register(generic.FormView):
 
         else:
             return self.form_invalid(form)
-
     
 
 
