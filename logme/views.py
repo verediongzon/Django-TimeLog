@@ -16,6 +16,8 @@ from django.core.urlresolvers import reverse
 
 from logme.forms import RegistrationForm, PasswordChangeForm
 
+
+
 class Index(generic.TemplateView):
     template_name = 'logme/form.html'
     
@@ -40,7 +42,8 @@ class Index(generic.TemplateView):
 			userstatus = Account.objects.get(user=user).status
 			
 
-			if userstatus=='offline':				
+			if userstatus=='offline':
+				
 
 				if user.is_superuser:
 					auth.login(request, user)
