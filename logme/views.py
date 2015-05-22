@@ -248,7 +248,7 @@ class Day_Total(generic.TemplateView):
 	template_name = 'logme/history.html'
 
 	def get(self, request):
-		display = self.request.user.account.total.all()
+		display = self.request.user.account.total.order_by('-today_in')
 
 		return self.render_to_response({'display':display})
 
@@ -304,7 +304,7 @@ class Histories(generic.TemplateView):
 	def get(self, request, pk):
 
 		u_account = Account.objects.get(pk=pk)
-		u_total = u_account.total.all() 
+		u_total = u_account.total.order_by('today_total') 
 
 		return self.render_to_response({'u_total_show':u_total})
 
