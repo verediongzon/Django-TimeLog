@@ -1,76 +1,77 @@
+<!DOCTYPE html>
 {% load staticfiles %}
+
 <html lang="en">
- <head>
-	    <meta charset="utf-8">
-	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	   
-	   <title>Register</title>
-
-	   
-	   	<link href="{{ STATIC_URL }}/logme/css/bootstrap.min.css" rel="stylesheet">
-   		<link href="{{STATIC_URL}}/logme/css/register.css" rel="stylesheet">
-   		<link href="{{STATIC_URL}}/logme/js/bluff.js" rel="stylesheet">
-
- </head>
-
-<body>
-		
-		 </br></br></br>
-         <div class="container">
-            <div class="row">           
-              <div class="col-sm-4 col-md-5 col-md-offset-4">
-                <h1 class="text-center login-title"><strong>Create Account</strong></h1>
-					</br></br></br>
-                	<div class="form-group">
-                	<form action="" method="POST">
-                		{% csrf_token %}
-							
-							
-			<div class="form-group">
-				<input type="text" class="form-control" placeholder="First name" name="{{ form.first_name.html_name}}" required>
-				<br>
-				<input type="text" class="form-control" placeholder="Last name" name="{{ form.last_name.html_name}}"required>
-			</div>
-
-			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Username" name="{{ form.username.html_name}}" required> 
-						{% if form.username.errors %}
-							<p class="error">
-						{{ form.username.errors }}
-							</p>{% endif %}
-    				<p><label for="username"{% if form.username.errors %} class="error"{% endif %}></label></p>
-			</div>
-			
-			<div class="form-group">
-				<input type="password" class="form-control" placeholder="Password" name="{{ form.password1.html_name}}" required>
-			 			{% if form.password1.errors %}
-			 			<div style="margin-top:13px;"><div class="alert alert-danger"><p class="error">
-			 			{{ form.password1.errors }}
-			 				</p>{% endif %}
-    				<p><label for="password1"{% if form.password.errors %} class="error"{% endif %}></label></p>
-			</div>
-
-			<div class="form-group">
-				<input type="password" class="form-control" placeholder="Confirm Password" name="{{ form.password2.html_name}}" required> 
-						{% if form.password2.errors %}
-			 			<div style="margin-top:13px;"><div class="alert alert-danger"><p class="error">
-			 			{{ form.password2.errors }}
-			 				</p>{% endif %}
-    			<p><label for="password2"{% if form.password.errors %} class="error"{% endif %}></label></p>
-			</div>
-				
-			<div class="form-group">
-				<input type="email" class="form-control" placeholder="Email Address" name="{{ form.email.html_name}}"required>
-			</div>
-
-            
-  				 <span class="pull-right"><button type="submit" class="btn btn-info btn-circle btn-lg"><i class="glyphicon glyphicon-download-alt"></i></button>
-
-  				<a href = "{%url 'logat:index' %}"><button type="button" class="btn btn-primary btn-circle btn-lg"><i class="glyphicon glyphicon-user"></i></button>
-
+	<head>
+		<title>Register</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="{{ STATIC_URL }}/logme/css/bootstrap.min.css" rel="stylesheet">
+		<link href="{{STATIC_URL}}/logme/css/style.css" rel="stylesheet">
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+							<a class="navbar-brand" href = "{%url 'logat:index' %}">Login Page  <i class="glyphicon glyphicon-home"></a></i>
+					</div>
+		</nav>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4 col-md-5 col-md-offset-4">
+							<h1 class="text-center login-title"><strong>Create Account</strong></h1>
+						<div class="form-group">
+							<form action="" method="POST">
+									{% csrf_token %}            
+								<div class="form-group"><br></br>
+									<input type="text" class="form-control" placeholder="First name" name="{{ form.first_name.html_name}}" required><br></br>
+									<input type="text" class="form-control" placeholder="Last name" name="{{ form.last_name.html_name}}"required><br>
+								</div>
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Username" name="{{ form.username.html_name}}" required> 
+										{% if form.username.errors %}
+											<p class="error">
+										{{ form.username.errors }}
+											</p>{% endif %}
+									<p><label for="username"{% if form.username.errors %} class="error"{% endif %}></label></p>
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-control" placeholder="Password" name="{{ form.password1.html_name}}" required>
+										{% if form.password1.errors %}
+										<div style="margin-top:13px;">
+											<div class="alert alert-danger">
+												<p class="error">
+													{{ form.password1.errors }}
+												</p>{% endif %}
+											</div>
+									<p><label for="password1"{% if form.password.errors %} class="error"{% endif %}></label></p>
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-control" placeholder="Confirm Password" name="{{ form.password2.html_name}}" required> 
+										{% if form.password2.errors %}
+										<div style="margin-top:13px;">
+											<div class="alert alert-danger">
+												<p class="error">
+													{{ form.password2.errors }}
+													</p>{% endif %}
+												<p><label for="password2"{% if form.password.errors %} class="error"{% endif %}></label></p>
+											</div>
+								<div class="form-group">
+									<input type="email" class="form-control" placeholder="Email Address" name="{{ form.email.html_name}}"required>
+								</div>
+									<span class="pull-right"><button type="submit" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-download-alt"> Sign up for Timelog</i></button>
+								<br>
+							</form>
+						</div>
+					</div>
 				</div>
-			</div>
-		</form>
+				</div>
 	</body>
 </html>

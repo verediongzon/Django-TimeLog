@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load staticfiles %}
+
 <html lang="en">
 	<head>
 		<title>Log In</title>
@@ -9,51 +10,51 @@
 			<link href="{{ STATIC_URL }}/logme/css/bootstrap.min.css" rel="stylesheet">
 			<link href="{{STATIC_URL}}/logme/css/style.css" rel="stylesheet">	
 	</head>
-  		<body>
-			<nav class="navbar navbar-inverse navbar-fixed-top">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<a class="navbar-brand">Web Devs Time Log</a>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand">Web Devs Time Log</a>
+				</div>
+			</div>
+		</nav>
+		<div class="container">
+			<div class="row">       
+				<div class="col-sm-5 col-md-4 col-md-offset-4">
+					<div class="panel-body">
+						<div class="form-group">
+							<form action = "{%url 'logat:index' %}" method = "POST">
+								{% csrf_token %}
+									{% if error_message %}
+								<div class="alert alert-danger">
+									<p class= "text-center">{{ error_message }}</p>
+										{% endif %}
+								</div> <!--end alert-danger -->
+							</div><!--end form-group -->
+						<div class="alt1" style="margin-top:-13px;">
+							<div class="input-group" >
+								<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+									<input type="text" class="form-control" name= "username" value class="text" maxlength="255" placeholder="Username" autocorrect="off" autocapitalize="off" tabindex="2" required autofocus>
+							</div>  <!--end input group -->
+						</div> <!--end alt1 -->
+						<div class="alt2">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+									<input type="password" class="form-control" name="password" value class="text" placeholder="Password" maxlength="255" autocorrect="off" autocapitalize="off" tabindex="2" required autofocus>
+								</div> <!--end input group -->
+							</div> <!--end alt2  -->
+						<div class="alt">
+							<div class="input-group">		
+								<button class="btn btn-lg btn-primary" type="submit">Log in</button></br></br>
+								<h5><a href = "{% url 'logat:register' %}"><center> Not a member yet? Sign up</a></center></h5>
+							</div>
+							</form>
+						</div>
 					</div>
 				</div>
-			</nav>
-			<div class="container">
-				<div class="row">       
-					<div class="col-sm-5 col-md-4 col-md-offset-4">
-						<div class="panel-body">
-							<div class="form-group">
-								<form action = "{%url 'logat:index' %}" method = "POST">
-									{% csrf_token %}
-										{% if error_message %}
-					 					<div class="alert alert-danger">
-											<p class= "text-center">{{ error_message }}</p>
-												{% endif %}
-					  					</div> <!--end alert-danger -->
-			   				</div><!--end form-group -->
-								<div class="alt1" style="margin-top:-13px;">
-						   			<div class="input-group" >
-										<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-											<input type="text" class="form-control" name= "username" value class="text" maxlength="255" placeholder="Username" autocorrect="off" autocapitalize="off" tabindex="2" required autofocus>
-						  			</div>  <!--end input group -->
-					   			</div> <!--end alt1 -->
-									<div class="alt2">
-						  				<div class="input-group">
-											<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-												<input type="password" class="form-control" name="password" value class="text" placeholder="Password" maxlength="255" autocorrect="off" autocapitalize="off" tabindex="2" required autofocus>
-						  				</div> <!--end input group -->
-					   				</div> <!--end alt2  -->
-										<div class="alt">
-						  					<div class="input-group">		
-												<button class="btn btn-lg btn-primary" type="submit">Log in</button>
-													</br></br>
-												<h5><a href = "{% url 'logat:register' %}"><center> Not a member yet? Sign up</a></center></h5>
-						   					</div><!--end input group -->
-					  					</div><!--end alt  -->
-		  				</div> <!-- end class panel body -->
-					</div>  <!-- end class col-sm -->
-				</div> <!-- end class row -->
-			</div> <!-- end container -->
-		</body>
+			</div>
+		</div>
+	</body>
 </html>
 
  
