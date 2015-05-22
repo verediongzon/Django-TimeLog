@@ -327,3 +327,10 @@ class ChangePassword(generic.TemplateView):
 
 class Manage_User(generic.TemplateView):
 	template_name = 'logme/users.html'
+
+	def get(self, request):
+
+		alluser = Account.objects.all()
+		print alluser
+
+		return self.render_to_response({'alluser':alluser})

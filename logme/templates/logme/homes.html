@@ -21,14 +21,15 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand">Administrator</a>
+					<a class="navbar-brand">Administrator</a>					
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="glyphicon glyphicon-cog"><span class="caret"></i></span></a>
-
 							<ul class="dropdown-menu" role="menu">
+								<li><a href="{%url 'logat:manage' %}"><center>Manage User</center></a></li>
+										<li class="divider"></li>
 								<li><center><input type="submit" name="logout" value ='Logout'/></center></a></li>
 
 							</ul>
@@ -36,7 +37,9 @@
 					</ul>
 				</div>
 			</div>
+
 		</nav>
+
 		</form>
 		<br></br>
 			<div class="container edit-con">

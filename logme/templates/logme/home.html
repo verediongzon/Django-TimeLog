@@ -3,7 +3,6 @@
 
 <html lang="en">
 	<head>
-		<title>Home</title>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -11,7 +10,7 @@
 		<link href="{{STATIC_URL}}/logme/css/style.css" rel="stylesheet">
 	</head>
 	<body>
-		<form action="{% url 'logat:home' %}" method="POST">
+		<form action="{% url 'logat:home' %}" method="POST"> 
 			{% csrf_token %}
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
@@ -22,7 +21,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" style="margin-left:50px" href="{% url 'logat:home' %}">Web Developers Time Log</a>
+					<a class="navbar-brand" href="{% url 'logat:home' %}">Web Developers Time Log</a>
 				</div>
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
@@ -32,7 +31,7 @@
 									<ul class="dropdown-menu" role="menu">
 										<li><a href="{%url 'logat:change_password' %}"><center>Change Password</center></a></li>
 										<li class="divider"></li>
-										<li><center><input type="submit" name="logout" value ='Logout'/></center></a></li>
+										<li><a href="{%url 'logat:home' %}"><center><input type="submit" name="logout" value ='Logout'/></center></a></li>
 									</ul>
 								</li>
 						</ul>
