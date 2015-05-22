@@ -324,3 +324,6 @@ class ChangePassword(generic.TemplateView):
             form.save()
             context['change'] = True
         return self.render_to_response(context)
+
+class Manage_User(generic.TemplateView):
+	template_name = 'logme/users.html'
