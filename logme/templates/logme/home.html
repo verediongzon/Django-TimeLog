@@ -3,6 +3,7 @@
 
 <html lang="en">
 	<head>
+		<title>Home</title>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -10,7 +11,7 @@
 		<link href="{{STATIC_URL}}/logme/css/style.css" rel="stylesheet">
 	</head>
 	<body>
-		<form action="{% url 'logat:home' %}" method="POST"> 
+		<form action="{% url 'logat:home' %}" method="POST">
 			{% csrf_token %}
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
@@ -31,7 +32,7 @@
 									<ul class="dropdown-menu" role="menu">
 										<li><a href="{%url 'logat:change_password' %}"><center>Change Password</center></a></li>
 										<li class="divider"></li>
-										<li><a href="{%url 'logat:home' %}"><center><input type="submit" name="logout" value ='Logout'/></center></a></li>
+										<li><center><input type="submit" name="logout" value ='Logout'/></center></a></li>
 									</ul>
 								</li>
 						</ul>
