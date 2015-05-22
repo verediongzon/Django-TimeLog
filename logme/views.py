@@ -75,7 +75,38 @@ class Index(generic.TemplateView):
 						return redirect('logat:home')
 						
 					else:
+
+
 						loguser = User.objects.get(username=username)
+
+						logout=loguser.account.history.last()
+			
+						logout.timeout = timezone.now()			
+
+						logout.save()
+
+						getting_last_history =loguser.account.history.last()
+						timein = getting_last_history.timein
+						str(timein)
+						datenow = timein.strftime('%Y-%m-%d')
+
+
+						filtered_history = loguser.account.history.filter(timein__startswith=datenow)
+
+						today_total = timedelta(0)
+
+						for total in filtered_history:
+							today_total += total.totaltime
+
+						
+						today = loguser.account.total.last()
+						today.today_total = today_total
+						today.save()
+
+
+						out = Account.objects.get(user=loguser)
+						out.status = 'offline'
+						out.save()
 
 						[s.delete() for s in Session.objects.all() if s.get_decoded().get('_auth_user_id') == loguser.id]
 
