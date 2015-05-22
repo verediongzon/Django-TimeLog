@@ -2,7 +2,7 @@
 
 
 body {
-    background-image: url("hea.jpg");
+
     padding-top: 40px;
     padding-bottom: 40px;
    /* background-color: #eee;*/
@@ -10,9 +10,11 @@ body {
 }
 
 .form-signin {
+
     max-width: 280px;
     padding: 15px;
     margin: 0 auto;
+
 }
 
 .alt1 {
@@ -156,4 +158,19 @@ body {
 
   margin-top: 8px;
 
+}
+
+.col-sm-4 {
+
+  margin-top: 50px;
+}
+
+.search .input-group {
+
+  margin-left: 100px;
+}
+
+.input-group .month {
+
+  margin-left: 15px;
 }

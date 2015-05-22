@@ -1,67 +1,50 @@
 <!DOCTYPE html>
 {% load staticfiles %}
+
 <html lang="en">
-
-<title>History</title>
-    
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-    <link href="{{ STATIC_URL }}/logme/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{STATIC_URL}}/logme/css/style.css" rel="stylesheet">
-
-
-</head> 
-<body>
-
-    <div class="container">
-            {% csrf_token %}
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" href="{% url 'logat:home' %}">Web Developers Time Log</a>
-                        </div>
-                    </div>
-        </nav>
-    <div class="container">
-            <table class="table table-responsive">
-                    <thead>
-                        <tr>
-
-                            </br></br></br>
-
-
-                            <th><div class="panel-heading"><h4><strong><p class= "text-center"> Dates </th></p>
-                            </strong>
-                            <th><div class="panel-heading"><h4><strong><p class= "text-center"> Total Time Logged 
-                            </th></p></strong>
-                              <th><div class="panel-heading"><h4><strong><p class= "text-center"> Day Salary 
-                            </th></p></strong>
-                        </tr>
-                    </thead>                    
-                    <tbody> 
-                        <br>
-
-                            {% for displayed in display %}
-
-                        <tr>
-                            <td><h5><p class= "text-center"> {{ displayed.today_in }} </p></h5></td>
-                            <td><h5><p class= "text-center"> {{ displayed.today_total }}</p></h5></td>
-                            <td><h5><p class= "text-center"> {{ displayed.salarytotal}}</p></h5></td>
-
-                        </tr>
-                            {% endfor %}
-                    </tbody>
-            </table>
-    </div>
-    </div>
-</body>
+	<head>
+		<title>History</title>
+			<meta charset="utf-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+			<link href="{{ STATIC_URL }}/logme/css/bootstrap.min.css" rel="stylesheet">
+			<link href="{{STATIC_URL}}/logme/css/style.css" rel="stylesheet">
+	</head> 
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="{% url 'logat:home' %}">Web Developers Time Log</a>
+				</div><!--end navbar-header -->
+			</div><!--end container-fluid -->
+		</nav><!--end nav -->
+			{% csrf_token %}
+		<div class="container">
+			<table class="table table-responsive">
+				<thead>
+					<tr>
+						</br></br></br>
+						<th><div class="panel-heading"><h4><strong><p class= "text-center"> Dates </th></p></strong>
+						<th><div class="panel-heading"><h4><strong><p class= "text-center"> Total Time Logged </th></p></strong>
+						<th><div class="panel-heading"><h4><strong><p class= "text-center"> Day Salary </th></p></strong>
+					</tr>
+				</thead>                    
+				<tbody>                       
+					{% for displayed in display %}
+						<tr>
+							<td><h5><p class= "text-center"> {{ displayed.today_in }} </p></h5></td>
+							<td><h5><p class= "text-center"> {{ displayed.today_total }}</p></h5></td>
+							<td><h5><p class= "text-center"> {{ displayed.salarytotal}}</p></h5></td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</body>
 </html>
