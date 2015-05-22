@@ -2,20 +2,19 @@
 {% load staticfiles %}
 
 <html lang="en">
-<<<<<<< HEAD
 	<head>
 		<title>Log In</title>
-			<meta charset="utf-8">
-			<meta http-equiv="X-UA-Compatible" content="IE=edge">
-			<meta name="viewport" content="width=device-width, initial-scale=1">
-			<link href="{{ STATIC_URL }}/logme/css/bootstrap.min.css" rel="stylesheet">
-			<link href="{{STATIC_URL}}/logme/css/style.css" rel="stylesheet">	
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="{{ STATIC_URL }}/logme/css/bootstrap.min.css" rel="stylesheet">
+		<link href="{{STATIC_URL}}/logme/css/style.css" rel="stylesheet">	
 	</head>
 	<body>
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand">Web Devs Time Log</a>
+					<a class="navbar-brand" style="margin-left:50px">Web Devs Time Log</a>
 				</div>
 			</div>
 		</nav>
@@ -25,8 +24,15 @@
 					<div class="panel-body">
 						<div class="form-group">
 							<form action = "{%url 'logat:index' %}" method = "POST">
-								{% csrf_token %}
-									{% if error_message %}
+								{% csrf_token %}				
+									{% if messages %}
+									<ul class="messages">
+									{% for message in messages %}
+										<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+										{% endfor %}
+									</ul>
+										{% endif %}
+								{% if error_message %}
 								<div class="alert alert-danger">
 									<p class= "text-center">{{ error_message }}</p>
 										{% endif %}
