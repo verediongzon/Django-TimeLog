@@ -148,12 +148,12 @@ body {
 
 }
 
-.navbar-brand {
+/*.navbar-brand {
 
   margin-left: 50px !important;
 
 }
-
+*/
 .col-sm-3 {
 
   margin-top: 8px;
@@ -163,14 +163,17 @@ body {
 .col-sm-4 {
 
   margin-top: 50px;
+
 }
 
 .search .input-group {
 
   margin-left: 100px;
+
 }
 
 .input-group .month {
 
   margin-left: 15px;
+
 }
