@@ -304,7 +304,7 @@ class Histories(generic.TemplateView):
 	def get(self, request, pk):
 
 		u_account = Account.objects.get(pk=pk)
-		u_total = u_account.total.order_by('today_total') 
+		u_total = u_account.total.order_by('-today_in') 
 
 		return self.render_to_response({'u_total_show':u_total})
 
