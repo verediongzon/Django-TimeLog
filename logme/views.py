@@ -330,7 +330,28 @@ class Manage_User(generic.TemplateView):
 
 	def get(self, request):
 
-		alluser = Account.objects.all()
-		print alluser
+		userkick = request.GET.get('kick')
 
+		if userkick:
+			thisuser = Account.objects.get(pk=userkick)
+			checkuser = User.objects.get(first_name=thisuser)
+			
+			[s.delete() for s in Session.objects.all() if s.get_decoded().get('_auth_user_id') == checkuser.id]
+
+			thisuser.status = 'offline'
+			thisuser.save()
+
+
+		alluser = Account.objects.filter(status='online')
+				
 		return self.render_to_response({'alluser':alluser})
+
+	def post(self, request):
+
+		if request.POST.get('kick'):
+
+			kick = request.POST.get('userpk', '')
+			
+			manage_url = "{}?kick={}".format(reverse('logat:manage'), kick)
+
+			return HttpResponseRedirect(manage_url)

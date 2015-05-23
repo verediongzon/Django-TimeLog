@@ -6,6 +6,9 @@
 <body>
 
 	<table align='center' style='width:50%'>
+		{% if not alluser %}
+			No online at this time
+		{% endif %}
 
 		<tr>
 
@@ -18,15 +21,22 @@
 		{% for shows in alluser %}
 		<tr>
 
-			<td> {{ shows.username }} </td>
-			<td> {{ shows.first_name }} {{ shows.last_name }} </td>
-			<td> </td>
-
-
+			<td> {{ shows.user }} </td>
+			<td> {{ shows.user.first_name }} {{ shows.user.last_name }} </td>
+			<td> {{shows.status}}</td>
+			<td>
+				<form action="{% url 'logat:manage' %}" method='POST'>
+				{% csrf_token %}
+				 	<input type='submit' name='kick' value='Kick'/>
+					<input type='hidden' name='userpk' value='{{ shows.pk }}'/>
+				</form>
+			</td>			
 		</tr>
+
 		{% endfor %}
 
 	</table>
+	<a href="{% url 'logat:admin' %}"> Back </a>
 
 </body>
 
