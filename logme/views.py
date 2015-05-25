@@ -248,9 +248,16 @@ class Day_Total(generic.TemplateView):
 	template_name = 'logme/history.html'
 
 	def get(self, request):
-		display = self.request.user.account.total.order_by('-today_in')
 
-		return self.render_to_response({'display':display})
+		if request.user.is_authenticated():
+
+			
+
+			display = self.request.user.account.total.order_by('-today_in')
+
+			return self.render_to_response({'display':display})
+
+		return redirect("logat:index")
 
 
 class Admin_Home(generic.TemplateView):
@@ -259,6 +266,10 @@ class Admin_Home(generic.TemplateView):
 
 	def get(self, request):
 	 	if request.user.is_authenticated():
+	 		search1 = request.GET.get('searchby')
+			search2 = request.GET.get('search1')
+
+			print search1, search2
 
 	 		host_display = Account.objects.all()
 
@@ -286,36 +297,52 @@ class Admin_Home(generic.TemplateView):
 			
 			return HttpResponseRedirect(reverse('logat:daytotal', args=[selected_user]))
 
+		if request.POST.get('search'):
+			searchby = request.POST.get('searchby','')
+			search1 = request.POST.get('search2','')
+
+			search_url = "{}?searchby={}".format(reverse('logat:admin'), searchby, search1)
+		
+			return HttpResponseRedirect(search_url)
+
 
 class Profile(generic.TemplateView):
 	template_name = 'logme/profile.html'	
 	
 	def get(self, request, pk):
-
-		u_account = Account.objects.get(pk=pk)
-		u_history = u_account.history.order_by('-timein')
-			
-		return self.render_to_response({'show_history':u_history})
+		if request.user.is_authenticated():
+			u_account = Account.objects.get(pk=pk)
+			u_history = u_account.history.order_by('-timein')
+				
+			return self.render_to_response({'show_history':u_history})
+		else:
+			return redirect('logat:index')
 
 
 class Histories(generic.TemplateView):
 	template_name = 'logme/histories.html'
 
 	def get(self, request, pk):
+		if request.user.is_authenticated():
 
-		u_account = Account.objects.get(pk=pk)
-		u_total = u_account.total.order_by('-today_in') 
+			u_account = Account.objects.get(pk=pk)
+			u_total = u_account.total.order_by('-today_in') 
 
-		return self.render_to_response({'u_total_show':u_total})
+			return self.render_to_response({'u_total_show':u_total})
+
+		else:
+			return redirect('logat:index')
 
 
 class ChangePassword(generic.TemplateView):
     template_name = 'logme/change_password.html'
 
     def get_context_data(self, *args, **kwargs):
-        context = {}
-        context['password_form'] = PasswordChangeForm(data=self.request.POST or None, user=self.request.user)
-        return context
+    	
+	    context = {}
+	    context['password_form'] = PasswordChangeForm(data=self.request.POST or None, user=self.request.user)
+	    return context
+	    
 
     def post(self, request):
         context = self.get_context_data()
@@ -330,21 +357,27 @@ class Manage_User(generic.TemplateView):
 
 	def get(self, request):
 
-		userkick = request.GET.get('kick')
+		if request.user.is_authenticated():
 
-		if userkick:
-			thisuser = Account.objects.get(pk=userkick)
-			checkuser = User.objects.get(first_name=thisuser)
-			
-			[s.delete() for s in Session.objects.all() if s.get_decoded().get('_auth_user_id') == checkuser.id]
+			userkick = request.GET.get('kick')
 
-			thisuser.status = 'offline'
-			thisuser.save()
-
-
-		alluser = Account.objects.filter(status='online')
+			if userkick:
+				thisuser = Account.objects.get(pk=userkick)
+				checkuser = User.objects.get(first_name=thisuser)
 				
-		return self.render_to_response({'alluser':alluser})
+				[s.delete() for s in Session.objects.all() if s.get_decoded().get('_auth_user_id') == checkuser.id]
+
+				thisuser.status = 'offline'
+				thisuser.save()
+
+
+			alluser = Account.objects.filter(status='online')
+					
+			return self.render_to_response({'alluser':alluser})
+
+		else:
+			return redirect('logat:index')
+
 
 	def post(self, request):
 

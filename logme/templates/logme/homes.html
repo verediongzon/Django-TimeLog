@@ -23,14 +23,25 @@
 					</button>
 					<a class="navbar-brand">Administrator</a>					
 				</div>
+						<input type='submit' name='search' value='Search'>
+						<select name='searchby'>
+							<option value='user'> Username </option>
+							<option value='name'> Name </option>
+							<option value='type'> Employee Type </option>
+							<option value='status'> Status </option>
+						</select>
+						<input type='text' name='search2'>
+
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
+						
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="glyphicon glyphicon-cog"><span class="caret"></i></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="{%url 'logat:manage' %}"><center>Manage User</center></a></li>
 										<li class="divider"></li>
 								<li><center><input type="submit" name="logout" value ='Logout'/></center></a></li>
+
 
 							</ul>
 						</li>
@@ -39,6 +50,8 @@
 			</div>
 
 		</nav>
+			<input type='submit' name='search' value='Search'> 
+			<input type='text' name='search1'>
 
 		</form>
 		<br></br>
