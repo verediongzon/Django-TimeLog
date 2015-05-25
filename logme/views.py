@@ -248,7 +248,7 @@ class Day_Total(generic.TemplateView):
 	template_name = 'logme/history.html'
 
 	def get(self, request):
-		display = self.request.user.account.total.all()
+		display = self.request.user.account.total.order_by('-today_in')
 
 		return self.render_to_response({'display':display})
 
@@ -304,7 +304,7 @@ class Histories(generic.TemplateView):
 	def get(self, request, pk):
 
 		u_account = Account.objects.get(pk=pk)
-		u_total = u_account.total.all() 
+		u_total = u_account.total.order_by('today_total') 
 
 		return self.render_to_response({'u_total_show':u_total})
 
@@ -324,3 +324,34 @@ class ChangePassword(generic.TemplateView):
             form.save()
             context['change'] = True
         return self.render_to_response(context)
+
+class Manage_User(generic.TemplateView):
+	template_name = 'logme/users.html'
+
+	def get(self, request):
+
+		userkick = request.GET.get('kick')
+
+		if userkick:
+			thisuser = Account.objects.get(pk=userkick)
+			checkuser = User.objects.get(first_name=thisuser)
+			
+			[s.delete() for s in Session.objects.all() if s.get_decoded().get('_auth_user_id') == checkuser.id]
+
+			thisuser.status = 'offline'
+			thisuser.save()
+
+
+		alluser = Account.objects.filter(status='online')
+				
+		return self.render_to_response({'alluser':alluser})
+
+	def post(self, request):
+
+		if request.POST.get('kick'):
+
+			kick = request.POST.get('userpk', '')
+			
+			manage_url = "{}?kick={}".format(reverse('logat:manage'), kick)
+
+			return HttpResponseRedirect(manage_url)
