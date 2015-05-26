@@ -1,5 +1,7 @@
+import re
 import datetime
 from django.http import HttpResponseRedirect, HttpRequest
+from logme import models
 from django.views import generic
 from django.contrib import auth
 from django.shortcuts import render, redirect, render_to_response, get_object_or_404
@@ -8,12 +10,13 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.models import User
 from logme.models import Account, History, Total
 from django.utils import timezone
-from django.template import Context
+from django.template import Context, RequestContext
 from django.views.generic.edit import FormView
 from datetime import timedelta
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.contrib.sessions.models import Session
+from django.db.models import Q
 
 from logme.forms import RegistrationForm, PasswordChangeForm
 
@@ -249,9 +252,7 @@ class Day_Total(generic.TemplateView):
 
 	def get(self, request):
 
-		if request.user.is_authenticated():
-
-			
+		if request.user.is_authenticated():			
 
 			display = self.request.user.account.total.order_by('-today_in')
 
@@ -261,27 +262,61 @@ class Day_Total(generic.TemplateView):
 
 
 class Admin_Home(generic.TemplateView):
+	model = models.Account
 	template_name = 'logme/homes.html'
+	
 
+	def normalize_query(self, query_string,
+					findterms=re.compile(r'"([^"]+)"|(\S+)').findall,
+					normspace=re.compile(r'\s{2,}').sub):
+
+		return [normspace (' ',(t[0] or t[1]).strip()) for t in findterms(query_string)]
+
+	def get_query(self, query_string, search_fields):
+		query = None
+		terms = self.normalize_query(query_string)
+		for term in terms:
+			or_query = None
+
+			for field_name in search_fields:
+				q = Q(**{"%s__icontains" % field_name: term})
+				if or_query is None:
+					or_query = q
+				else:
+					or_query = or_query | q
+
+			if query is None:
+				query = or_query
+			else:
+				query = query & or_query
+
+		return query
 
 	def get(self, request):
 	 	if request.user.is_authenticated():
-	 		search1 = request.GET.get('searchby')
-			search2 = request.GET.get('search1')
 
-			print search1, search2
+	 		fields = ['status','user__username', 'employee_type','user__first_name','user__last_name']
 
-	 		host_display = Account.objects.all()
+	 		if 'q' in request.GET and request.GET['q'].strip():
+	 			query_string = request.GET['q']
 
+	 			entry_query =self.get_query(query_string, fields)
 
-	 		return self.render_to_response({'display':host_display})
+	 			found_entries = Account.objects.filter(entry_query)
+	 			
+		 		return self.render_to_response({'display':found_entries})
 
+	 		else:
+
+	 			host_display = Account.objects.all()
+
+	 			return self.render_to_response({'display':host_display})
+	 		
 	 	else:
 			return redirect('logat:index')
 
 
 	def post(self, request):
-
 
 		if request.POST.get('logout'):
 			auth.logout(request)
@@ -297,14 +332,7 @@ class Admin_Home(generic.TemplateView):
 			
 			return HttpResponseRedirect(reverse('logat:daytotal', args=[selected_user]))
 
-		if request.POST.get('search'):
-			searchby = request.POST.get('searchby','')
-			search1 = request.POST.get('search2','')
-
-			search_url = "{}?searchby={}".format(reverse('logat:admin'), searchby, search1)
-		
-			return HttpResponseRedirect(search_url)
-
+	
 
 class Profile(generic.TemplateView):
 	template_name = 'logme/profile.html'	
