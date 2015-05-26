@@ -101,7 +101,6 @@ body {
 
 }
 
-
 .navbar-inverse {
 
   padding: 5px;
@@ -119,7 +118,6 @@ body {
   margin-top: 5px !important;
 
 }
-
 
 .edit-con {
 
@@ -139,12 +137,12 @@ body {
 
 }
 
-/*.navbar-brand {
+.navbar-brand {
 
   margin-left: 50px !important;
 
 }
-*/
+
 .col-sm-3 {
 
   margin-top: 8px;
@@ -153,13 +151,13 @@ body {
 
 .col-sm-4 {
 
-  margin-top: 50px;
+  margin-top: 80px;
 
 }
 
 .search .input-group {
 
-  margin-left: 100px;
+  margin-left: 150px;
 
 }
 
@@ -168,3 +166,32 @@ body {
   margin-left: 15px;
 
 }
+
+.alert-danger {
+
+  margin-bottom: 30px;
+  margin-top:13px;
+
+}
+.error ul {
+
+  list-style-type: none !important; 
+  margin-bottom: 0px !important;
+
+}
+
+.errorlist { 
+
+    list-style-type: none !important; 
+    margin-bottom: 0px !important;
+
+}
+
+.jumbotron p {
+
+    margin-bottom: 15px;
+    font-size: 40px;
+    font-weight: 200;
+
+}
+

@@ -13,83 +13,84 @@
 	<body>
 		<form action="{% url 'logat:home' %}" method="POST">
 			{% csrf_token %}
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" style="margin-left:50px" href="{% url 'logat:home' %}">Web Developers Time Log</a>
-				</div>
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav navbar-right">
-							<a class="navbar-brand" href="{%url 'logat:history' %}">History</a>
-								<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="glyphicon glyphicon-cog"><span class="caret"></i></span></a>
-									<ul class="dropdown-menu" role="menu">
-										<li><a href="{%url 'logat:change_password' %}"><center>Change Password</center></a></li>
-										<li class="divider"></li>
-										<li><center><input type="submit" name="logout" value ='Logout'/></center></a></li>
-									</ul>
-								</li>
-						</ul>
-							<div class="col-sm-3 col-md-3 pull-right">
-								<form class="navbar-form">
-									<div class="search">
-										<div class="input-group">
-											<input type='submit' class="btn btn-default" name='search2' value='Search'/>
-												<select name='month' class="btn btn-default" style="margin-left: 10px;">
-													<option value='00'> Month </option>
-													<option value='01'> Jan </option>
-													<option value='02'> Feb </option>
-													<option value='03'> March </option>
-													<option value='04'> April </option>
-													<option value='05'> May </option>
-													<option value='06'> June </option>
-													<option value='07'> July </option>
-													<option value='08'> Aug </option>
-													<option value='09'> Sept </option>
-													<option value='10'> Oct </option>
-													<option value='11'> Nov </option>
-													<option value='12'> Dec </option>
-												</select>											
+			<nav class="navbar navbar-inverse navbar-fixed-top">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="{% url 'logat:home' %}">Web Developers Time Log</a>
+					</div>
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav navbar-right">
+								<a class="navbar-brand" href="{%url 'logat:history' %}">History</a>
+									<li class="dropdown">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="glyphicon glyphicon-cog"><span class="caret"></i></span></a>
+										<ul class="dropdown-menu" role="menu">
+											<li><a href="{%url 'logat:change_password' %}"><center>Change Password</center></a></li>
+											<li class="divider"></li>
+											<li><center><input type="submit" name="logout" value ='Logout'/></center></a></li>
+										</ul>
+									</li>
+							</ul>
+								<div class="col-sm-3 col-md-3 pull-right">
+									<form class="navbar-form">
+										<div class="search">
+											<div class="input-group" >
+												<input type='submit' class="btn btn-default" name='search2' value='Search'/>
+													<select name='month' class="btn btn-default" style="margin-left: 15px;">
+														<option value='00'> Month </option>
+														<option value='01'> Jan </option>
+														<option value='02'> Feb </option>
+														<option value='03'> March </option>
+														<option value='04'> April </option>
+														<option value='05'> May </option>
+														<option value='06'> June </option>
+														<option value='07'> July </option>
+														<option value='08'> Aug </option>
+														<option value='09'> Sept </option>
+														<option value='10'> Oct </option>
+														<option value='11'> Nov </option>
+														<option value='12'> Dec </option>
+													</select>
+												</input>
+											</div>
 										</div>
-									</div>
-								</form>
-							</div>
-					</div><!-- /.navbar-collapse -->
-			</div><!-- /.container-fluid -->
-		</nav>
-		<div class="container edit-con">
-			<h1><p class= "text-center"><strong> {{user.first_name}} {{user.last_name}} </strong></p></h1>
-			<br>
-			<h5><p class= "text-center"> <strong>Logged on: </strong> {{timein}}</p></h5>
-			<h5><p class= "text-center"> <strong> Today's Total Time:</strong> {{ today_total }}</h5>
-		</div> <!-- end of container -->
-			<br></br><br></br>
-				<div class = "container">
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th><div class="panel-heading"><h4><strong><p class= "text-center">Time In</h4></strong></p></div></th>
-								<th><div class="panel-heading"><h4><strong><p class= "text-center">Time Out</h4></strong></p></div></th>
-								<th><div class="panel-heading"><h4><strong><p class= "text-center">Total Time</h4></strong></p></div></th>
-							</tr>
-						</thead>
-						<tbody>
-							{% for show in sorts %} 						
-							<tr>    
-								<td><p class= "text-center">{{show.timein}}</p></td>
-								<td><p class= "text-center">{{show.timeout}}</p></td>   
-								<td><p class= "text-center">{{show.totaltime}}</p></td>
-							{% endfor %}
-							</tr>
-						</tbody>
-					</table>
-				</div> <!-- end of container -->
+									</form>
+								</div>
+						</div><!-- /.navbar-collapse -->
+				</div><!-- /.container-fluid -->
+			</nav>
+			<div class="container edit-con">
+				<h1><p class= "text-center"><strong> {{user.first_name}} {{user.last_name}} </strong></p></h1>
+				<br>
+				<h5><p class= "text-center"> <strong>Logged on: </strong> {{timein}}</p></h5>
+				<h5><p class= "text-center"> <strong> Today's Total Time:</strong> {{ today_total }}</h5>
+			</div> <!-- end of container -->
+				<br></br><br></br>
+					<div class = "container">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th><div class="panel-heading"><h4><strong><p class= "text-center">Time In</h4></strong></p></div></th>
+									<th><div class="panel-heading"><h4><strong><p class= "text-center">Time Out</h4></strong></p></div></th>
+									<th><div class="panel-heading"><h4><strong><p class= "text-center">Total Time</h4></strong></p></div></th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for show in sorts %} 						
+								<tr>    
+									<td><p class= "text-center">{{show.timein}}</p></td>
+									<td><p class= "text-center">{{show.timeout}}</p></td>   
+									<td><p class= "text-center">{{show.totaltime}}</p></td>
+								{% endfor %}
+								</tr>
+							</tbody>
+						</table>
+					</div> <!-- end of container -->
 		</form>
 		<script src="{{STATIC_URL}}logme/js/jquery-1.7.1.min.js"></script>
 		<script src="{{STATIC_URL}}logme/js/bootstrap.js"></script>
