@@ -20,58 +20,69 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-							<a class="navbar-brand" style="margin-left:50px" href = "{%url 'logat:index' %}">Login Page  <i class="glyphicon glyphicon-home"></a></i>
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav navbar-right">
+								<a class="navbar-brand" href="{% url 'logat:index' %}" style="margin-right:50px">Back to Login </a>
+							</ul>
+						</div>
 					</div>
 		</nav>
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-4 col-md-5 col-md-offset-4">
-							<h1 class="text-center login-title"><strong>Create Account</strong></h1>
+						<h1 class="text-center login-title"><strong>Create Account</strong></h1><br>
 						<div class="form-group">
 							<form action="" method="POST">
 									{% csrf_token %}            
-								<div class="form-group"><br></br>
-									<input type="text" class="form-control" placeholder="First name" name="{{ form.first_name.html_name}}" required><br></br>
-									<input type="text" class="form-control" placeholder="Last name" name="{{ form.last_name.html_name}}"required><br>
-								</div>
 								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Username" name="{{ form.username.html_name}}" required> 
+									<input type="text" class="form-control" placeholder="Username" style="margin-top:20px" name="{{ form.username.html_name}}" required>
+									<center>
 										{% if form.username.errors %}
-											<p class="error">
-										{{ form.username.errors }}
-											</p>{% endif %}
-									<p><label for="username"{% if form.username.errors %} class="error"{% endif %}></label></p>
+										<div class="alert alert-danger">
+											<div class="error">
+												{{ form.username.errors }}
+											</div>{% endif %}
+									<!-- <p><label for="username"{% if form.username.errors %} class="error"{% endif %}></label></p> -->
+									</center>
 								</div>
 								<div class="form-group">
-									<input type="password" class="form-control" placeholder="Password" name="{{ form.password1.html_name}}" required>
+									<input type="password" class="form-control" placeholder="Password" style="margin-top:20px" name="{{ form.password1.html_name}}" required>
+									<center>
 										{% if form.password1.errors %}
-										<div style="margin-top:13px;">
 											<div class="alert alert-danger">
 												<p class="error">
 													{{ form.password1.errors }}
 												</p>{% endif %}
 											</div>
-									<p><label for="password1"{% if form.password.errors %} class="error"{% endif %}></label></p>
+										<!-- <label for="password1"{% if form.password.errors %} class="error"{% endif %}></label> -->
+									</center>
 								</div>
 								<div class="form-group">
-									<input type="password" class="form-control" placeholder="Confirm Password" name="{{ form.password2.html_name}}" required> 
+									<input type="password" class="form-control" placeholder="Confirm Password" style="margin-top:20px" name="{{ form.password2.html_name}}" required>
+									<center>
 										{% if form.password2.errors %}
-										<div style="margin-top:13px;">
 											<div class="alert alert-danger">
 												<p class="error">
 													{{ form.password2.errors }}
 													</p>{% endif %}
-												<p><label for="password2"{% if form.password.errors %} class="error"{% endif %}></label></p>
+												<!-- <label for="password2"{% if form.password.errors %} class="error"{% endif %}></label> -->
 											</div>
+									</center>
 								<div class="form-group">
-									<input type="email" class="form-control" placeholder="Email Address" name="{{ form.email.html_name}}"required>
+									<input type="text" class="form-control" placeholder="First name" style="margin-top:20px" name="{{ form.first_name.html_name}}" required>
 								</div>
-									<span class="pull-right"><button type="submit" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-download-alt"> Sign up</i></button>
-								<br>
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Last name" style="margin-top:20px" name="{{ form.last_name.html_name}}"required>
+								</div>
+								<div class="form-group">
+									<input type="email" class="form-control" placeholder="Email Address" style="margin-top:20px" name="{{ form.email.html_name}}"required>
+								</div>
+									<button type="submit" class="btn btn-primary btn-lg" style="margin-top:10px">Sign Up</i></button>
+								</div>
 							</form>
 						</div>
 					</div>
 				</div>
-				</div>
+			</div>
 	</body>
 </html>
