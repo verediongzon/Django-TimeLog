@@ -181,8 +181,17 @@ body {
 }
 
 .errorlist { 
-  list-style-type: none !important; 
-  margin-bottom: 0px !important;
+
+    list-style-type: none !important; 
+    margin-bottom: 0px !important;
+
+}
+
+.jumbotron p {
+
+    margin-bottom: 15px;
+    font-size: 40px;
+    font-weight: 200;
 
 }
 

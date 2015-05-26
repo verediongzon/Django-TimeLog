@@ -21,41 +21,48 @@
 						<span class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand">Manage All Registered Users</a>
-				</div><!--end navbar-header -->
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				</div>
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
 						<a class="navbar-brand" href="{% url 'logat:admin' %}" style="margin-right:50px">Back to Admin <i class="glyphicon glyphicon-user"></a></i>
 					</ul>
 				</div>
-			</div><!--end container-fluid -->
-		</nav><!--end nav -->
+			</div>
+		</nav> 
+			<div class="jumbotron" style="margin-top:45px;">
+	  			<div class="container">
+					<p class= "text-center"></strong>
+						{% if not alluser %}
+					 		No online at this time
+						{% endif %} 
+					</p></strong>
+	  			</div>
+			</div>
 		<div class="container">
 			<table class="table table-responsive">
-				<thead>
-					<tr>
-						</br></br></br>
-						<th><div class="panel-heading"><h4><strong><p class= "text-center"> Username </th></p></strong>
-						<th><div class="panel-heading"><h4><strong><p class= "text-center"> Fullname </th></p></strong>
-						<th><div class="panel-heading"><h4><strong><p class= "text-center"> Status </th></p></strong>
-					</tr>
-				</thead> 
-				<tbody>                      
-					{% for shows in allusers %}
-					<tr>
-						<td><h5><p class= "text-center"> {{ shows.user }} </p></h5></td>
-						<td><h5><p class= "text-center"> {{ shows.user.first_name }} {{ shows.user.last_name }} </p></h5></td>
-						<td><h5><p class= "text-center"> {{shows.status}} </p></h5></td>
-						<td>
-							<form action="{% url 'logat:manage' %}" method='POST'>
-								{% csrf_token %}
-				 					<span style="padding-left:7px;"><input type='submit' name='kick' class="btn btn-primary" value='Kick'/>
-									<span style="padding-left:7px;"><input type='hidden' name='userpk' class="btn btn-primary" value='{{ shows.pk }}'/>
-							</form>
-						</td>			
-					</tr>
-					{% endfor %}
-				<tbody>
+					<thead>
+						<tr>
+							<th><div class="panel-heading"><h4><strong><p class= "text-center"> Username </th></p></strong>
+							<th><div class="panel-heading"><h4><strong><p class= "text-center"> Fullname </th></p></strong>
+							<th><div class="panel-heading"><h4><strong><p class= "text-center"> Status </th></p></strong>
+						</tr>
+					</thead> 
+					<tbody>                      
+						{% for shows in alluser %}
+						<tr>
+							<td><h5><p class= "text-center"> {{ shows.user }} </p></h5></td>
+							<td><h5><p class= "text-center"> {{ shows.user.first_name }} {{ shows.user.last_name }} </p></h5></td>
+							<td><h5><p class= "text-center"> {{shows.status}} </p></h5></td>
+							<td>			
+								<form action="{% url 'logat:manage' %}" method='POST'>
+										{% csrf_token %}
+				 					<span style="padding-left:7px;" ><input type='submit' name='kick' class="btn btn-primary" value='Kick'/></span>
+									<span style="padding-left:7px;"><input type='hidden' name='userpk' class="btn btn-default" value='{{ shows.pk }}'/></span>
+								</form>
+							</td>
+						</tr>
+					</tbody>
 			</table>
-		</div>
+		{% endfor %}
 	</body>
 </html>

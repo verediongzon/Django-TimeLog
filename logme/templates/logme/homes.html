@@ -66,7 +66,7 @@
 							<td>
 								<form action="{% url 'logat:admin' %}" method = "POST">
 										{% csrf_token %}
-									<span style="padding-left:7px;"><input type = 'submit' name='history' class="btn btn-primary" value='Log History'></span>
+									<span style="padding-left:5px;"><input type = 'submit' name='history' class="btn btn-primary" value='Log History'></span>
 									<span style="padding-left:5px;"><input type = 'submit' name='daytotal' class="btn btn-primary" value='Days Total'></span>
 									<span style="padding-left:5px;"><input type = 'hidden' name='naming' class="btn btn-primary" value='{{ displays.pk }}'> </span>
 								</form>
