@@ -57,39 +57,38 @@
 													<option value='12'> Dec </option>
 												</select>											
 										</div>
-									</div>
-								</form>
-							</div>
-					</div><!-- /.navbar-collapse -->
-			</div><!-- /.container-fluid -->
-		</nav>
-		<div class="container edit-con">
-			<h1><p class= "text-center"><strong> {{user.first_name}} {{user.last_name}} </strong></p></h1>
-			<br>
-			<h5><p class= "text-center"> <strong>Logged on: </strong> {{timein}}</p></h5>
-			<h5><p class= "text-center"> <strong> Today's Total Time:</strong> {{ today_total }}</h5>
-		</div> <!-- end of container -->
-			<br></br><br></br>
-				<div class = "container">
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th><div class="panel-heading"><h4><strong><p class= "text-center">Time In</h4></strong></p></div></th>
-								<th><div class="panel-heading"><h4><strong><p class= "text-center">Time Out</h4></strong></p></div></th>
-								<th><div class="panel-heading"><h4><strong><p class= "text-center">Total Time</h4></strong></p></div></th>
-							</tr>
-						</thead>
-						<tbody>
-							{% for show in sorts %} 						
-							<tr>    
-								<td><p class= "text-center">{{show.timein}}</p></td>
-								<td><p class= "text-center">{{show.timeout}}</p></td>   
-								<td><p class= "text-center">{{show.totaltime}}</p></td>
-							{% endfor %}
-							</tr>
-						</tbody>
-					</table>
-				</div> <!-- end of container -->
+									</form>
+								</div>
+						</div><!-- /.navbar-collapse -->
+				</div><!-- /.container-fluid -->
+			</nav>
+			<div class="container edit-con">
+				<h1><p class= "text-center"><strong> {{user.first_name}} {{user.last_name}} </strong></p></h1>
+				<br>
+				<h5><p class= "text-center"> <strong>Logged on: </strong> {{timein}}</p></h5>
+				<h5><p class= "text-center"> <strong> Today's Total Time:</strong> {{ today_total }}</h5>
+			</div> <!-- end of container -->
+				<br></br><br></br>
+					<div class = "container">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th><div class="panel-heading"><h4><strong><p class= "text-center">Time In</h4></strong></p></div></th>
+									<th><div class="panel-heading"><h4><strong><p class= "text-center">Time Out</h4></strong></p></div></th>
+									<th><div class="panel-heading"><h4><strong><p class= "text-center">Total Time</h4></strong></p></div></th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for show in sorts %} 						
+								<tr>    
+									<td><p class= "text-center">{{show.timein}}</p></td>
+									<td><p class= "text-center">{{show.timeout}}</p></td>   
+									<td><p class= "text-center">{{show.totaltime}}</p></td>
+								{% endfor %}
+								</tr>
+							</tbody>
+						</table>
+					</div> <!-- end of container -->
 		</form>
 		<script src="{{STATIC_URL}}logme/js/jquery-1.7.1.min.js"></script>
 		<script src="{{STATIC_URL}}logme/js/bootstrap.js"></script>
