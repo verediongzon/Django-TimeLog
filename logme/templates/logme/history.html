@@ -22,6 +22,11 @@
 					</button>
 					<a class="navbar-brand" style="margin-left:50px" href="{% url 'logat:home' %}">Web Developers Time Log</a>
 				</div><!--end navbar-header -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+						<a class="navbar-brand" href="{% url 'logat:home' %}" style="margin-right:50px"> Back to Home <i class="glyphicon glyphicon-home"></a></i>
+					</ul>
+				</div> 
 			</div><!--end container-fluid -->
 		</nav><!--end nav -->
 			{% csrf_token %}
@@ -40,7 +45,7 @@
 						<tr>
 							<td><h5><p class= "text-center"> {{ displayed.today_in }} </p></h5></td>
 							<td><h5><p class= "text-center"> {{ displayed.today_total }}</p></h5></td>
-							<td><h5><p class= "text-center"> {{ displayed.salarytotal}}</p></h5></td>
+							<td><h5><p class= "text-center"> {{ displayed.salary_total}}</p></h5></td>
 						</tr>
 					{% endfor %}
 				</tbody>

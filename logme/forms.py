@@ -6,10 +6,10 @@ from django.contrib.auth.forms import UserCreationForm, SetPasswordForm
 class RegistrationForm(user_forms.UserCreationForm):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'password1', 'password2', 'email']
+        fields = ['username', 'password1', 'password2', 'first_name', 'last_name', 'email']
 
     def clean_first_name(self):
-        return self.cleaned_data['first_name'].capitalize()
+        return self.cleaned_data['first_name'].title()
 
     def clean_last_name(self):
         return self.cleaned_data['last_name'].capitalize()
