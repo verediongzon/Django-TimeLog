@@ -1,5 +1,7 @@
+import re
 import datetime
 from django.http import HttpResponseRedirect, HttpRequest
+from logme import models
 from django.views import generic
 from django.contrib import auth
 from django.shortcuts import render, redirect, render_to_response, get_object_or_404
@@ -8,12 +10,13 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.models import User
 from logme.models import Account, History, Total
 from django.utils import timezone
-from django.template import Context
+from django.template import Context, RequestContext
 from django.views.generic.edit import FormView
 from datetime import timedelta
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.contrib.sessions.models import Session
+from django.db.models import Q
 
 from logme.forms import RegistrationForm, PasswordChangeForm
 
@@ -248,29 +251,73 @@ class Day_Total(generic.TemplateView):
 	template_name = 'logme/history.html'
 
 	def get(self, request):
-		display = self.request.user.account.total.order_by('-today_in')
 
-		return self.render_to_response({'display':display})
+		if request.user.is_authenticated():			
+
+			display = self.request.user.account.total.order_by('-today_in')
+
+			return self.render_to_response({'display':display})
+
+		return redirect("logat:index")
 
 
 class Admin_Home(generic.TemplateView):
+	model = models.Account
 	template_name = 'logme/homes.html'
+	
+
+	def normalize_query(self, query_string,
+					findterms=re.compile(r'"([^"]+)"|(\S+)').findall,
+					normspace=re.compile(r'\s{2,}').sub):
+
+		return [normspace (' ',(t[0] or t[1]).strip()) for t in findterms(query_string)]
+
+	def get_query(self, query_string, search_fields):
+		query = None
+		terms = self.normalize_query(query_string)
+		for term in terms:
+			or_query = None
+
+			for field_name in search_fields:
+				q = Q(**{"%s__icontains" % field_name: term})
+				if or_query is None:
+					or_query = q
+				else:
+					or_query = or_query | q
+
+			if query is None:
+				query = or_query
+			else:
+				query = query & or_query
+
+		return query
 
 
 	def get(self, request):
 	 	if request.user.is_authenticated():
 
-	 		host_display = Account.objects.all()
+			fields = ['status','user__username', 'employee_type','user__first_name','user__last_name']
 
+	 		if 'q' in request.GET and request.GET['q'].strip():
+	 			query_string = request.GET['q']
 
-	 		return self.render_to_response({'display':host_display})
+	 			entry_query =self.get_query(query_string, fields)
 
+	 			found_entries = Account.objects.filter(entry_query)
+
+		 		return self.render_to_response({'display':found_entries})
+
+	 		else:
+
+	 			host_display = Account.objects.all()
+
+	 			return self.render_to_response({'display':host_display})
+	 		
 	 	else:
 			return redirect('logat:index')
 
 
 	def post(self, request):
-
 
 		if request.POST.get('logout'):
 			auth.logout(request)
@@ -286,36 +333,61 @@ class Admin_Home(generic.TemplateView):
 			
 			return HttpResponseRedirect(reverse('logat:daytotal', args=[selected_user]))
 
+	
 
 class Profile(generic.TemplateView):
 	template_name = 'logme/profile.html'	
 	
 	def get(self, request, pk):
+		if request.user.is_authenticated():
 
-		u_account = Account.objects.get(pk=pk)
-		u_history = u_account.history.order_by('-timein')
-			
-		return self.render_to_response({'show_history':u_history})
+			if request.GET.get('month'):
+
+				thatmonth = request.GET.get('month')
+
+				if thatmonth == '00':					
+					thatmonth = timezone.now().month
+
+				u_account = Account.objects.get(pk=pk)
+				u_history = u_account.history.filter(timein__month=thatmonth).order_by('-timein')
+					
+				return self.render_to_response({'show_history':u_history})
+
+			else:
+
+				u_account = Account.objects.get(pk=pk)
+				u_history = u_account.history.order_by('-timein')
+					
+				return self.render_to_response({'show_history':u_history})
+		else:
+			return redirect('logat:index')
 
 
 class Histories(generic.TemplateView):
 	template_name = 'logme/histories.html'
 
 	def get(self, request, pk):
+		if request.user.is_authenticated():
 
-		u_account = Account.objects.get(pk=pk)
-		u_total = u_account.total.order_by('today_total') 
+			u_account = Account.objects.get(pk=pk)
+			u_total = u_account.total.order_by('-today_in') 
 
-		return self.render_to_response({'u_total_show':u_total})
+			return self.render_to_response({'u_total_show':u_total})
+
+		else:
+
+			return redirect('logat:index')
 
 
 class ChangePassword(generic.TemplateView):
     template_name = 'logme/change_password.html'
 
     def get_context_data(self, *args, **kwargs):
-        context = {}
-        context['password_form'] = PasswordChangeForm(data=self.request.POST or None, user=self.request.user)
-        return context
+    	
+	    context = {}
+	    context['password_form'] = PasswordChangeForm(data=self.request.POST or None, user=self.request.user)
+	    return context
+	    
 
     def post(self, request):
         context = self.get_context_data()
@@ -330,21 +402,27 @@ class Manage_User(generic.TemplateView):
 
 	def get(self, request):
 
-		userkick = request.GET.get('kick')
+		if request.user.is_authenticated():
 
-		if userkick:
-			thisuser = Account.objects.get(pk=userkick)
-			checkuser = User.objects.get(first_name=thisuser)
-			
-			[s.delete() for s in Session.objects.all() if s.get_decoded().get('_auth_user_id') == checkuser.id]
+			userkick = request.GET.get('kick')
 
-			thisuser.status = 'offline'
-			thisuser.save()
-
-
-		alluser = Account.objects.filter(status='online')
+			if userkick:
+				thisuser = Account.objects.get(pk=userkick)
+				checkuser = User.objects.get(first_name=thisuser)
 				
-		return self.render_to_response({'alluser':alluser})
+				[s.delete() for s in Session.objects.all() if s.get_decoded().get('_auth_user_id') == checkuser.id]
+
+				thisuser.status = 'offline'
+				thisuser.save()
+
+
+			alluser = Account.objects.filter(status='online')
+					
+			return self.render_to_response({'alluser':alluser})
+
+		else:
+			return redirect('logat:index')
+
 
 	def post(self, request):
 
