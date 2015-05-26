@@ -349,7 +349,7 @@ class Profile(generic.TemplateView):
 					thatmonth = timezone.now().month
 
 				u_account = Account.objects.get(pk=pk)
-				u_history = u_account.history.filter(timein__month=thatmonth)
+				u_history = u_account.history.filter(timein__month=thatmonth).order_by('-timein')
 					
 				return self.render_to_response({'show_history':u_history})
 
@@ -368,16 +368,6 @@ class Histories(generic.TemplateView):
 
 	def get(self, request, pk):
 		if request.user.is_authenticated():
-
-			if request.GET.get('month'):
-
-				thatmonth = request.GET.get('month')
-				print thatmonth
-
-				u_account = Account.objects.get(pk=pk)
-				u_total = u_account.total.filter(today_in__month=thatmonth) 
-
-				return self.render_to_response({'i_total_show':u_total})
 
 			u_account = Account.objects.get(pk=pk)
 			u_total = u_account.total.order_by('-today_in') 
