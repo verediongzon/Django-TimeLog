@@ -292,10 +292,11 @@ class Admin_Home(generic.TemplateView):
 
 		return query
 
+
 	def get(self, request):
 	 	if request.user.is_authenticated():
 
-	 		fields = ['status','user__username', 'employee_type','user__first_name','user__last_name']
+			fields = ['status','user__username', 'employee_type','user__first_name','user__last_name']
 
 	 		if 'q' in request.GET and request.GET['q'].strip():
 	 			query_string = request.GET['q']
@@ -303,7 +304,7 @@ class Admin_Home(generic.TemplateView):
 	 			entry_query =self.get_query(query_string, fields)
 
 	 			found_entries = Account.objects.filter(entry_query)
-	 			
+
 		 		return self.render_to_response({'display':found_entries})
 
 	 		else:
@@ -339,10 +340,25 @@ class Profile(generic.TemplateView):
 	
 	def get(self, request, pk):
 		if request.user.is_authenticated():
-			u_account = Account.objects.get(pk=pk)
-			u_history = u_account.history.order_by('-timein')
-				
-			return self.render_to_response({'show_history':u_history})
+
+			if request.GET.get('month'):
+
+				thatmonth = request.GET.get('month')
+
+				if thatmonth == '00':					
+					thatmonth = timezone.now().month
+
+				u_account = Account.objects.get(pk=pk)
+				u_history = u_account.history.filter(timein__month=thatmonth)
+					
+				return self.render_to_response({'show_history':u_history})
+
+			else:
+
+				u_account = Account.objects.get(pk=pk)
+				u_history = u_account.history.order_by('-timein')
+					
+				return self.render_to_response({'show_history':u_history})
 		else:
 			return redirect('logat:index')
 
@@ -353,12 +369,23 @@ class Histories(generic.TemplateView):
 	def get(self, request, pk):
 		if request.user.is_authenticated():
 
+			if request.GET.get('month'):
+
+				thatmonth = request.GET.get('month')
+				print thatmonth
+
+				u_account = Account.objects.get(pk=pk)
+				u_total = u_account.total.filter(today_in__month=thatmonth) 
+
+				return self.render_to_response({'i_total_show':u_total})
+
 			u_account = Account.objects.get(pk=pk)
 			u_total = u_account.total.order_by('-today_in') 
 
 			return self.render_to_response({'u_total_show':u_total})
 
 		else:
+
 			return redirect('logat:index')
 
 
