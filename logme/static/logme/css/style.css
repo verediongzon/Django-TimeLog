@@ -3,107 +3,114 @@
 
 body {
 
-    padding-top: 40px;
-    padding-bottom: 40px;
-   /* background-color: #eee;*/
+		padding-top: 40px;
+		padding-bottom: 40px;
+		/*background-color: transparent !important;*/
 
 }
 
+/*html { 
+	background: url(images/photo-1421757295538-9c80958e75b0.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}*/
 .form-signin {
 
-    max-width: 280px;
-    padding: 15px;
-    margin: 0 auto;
+		max-width: 280px;
+		padding: 15px;
+		margin: 0 auto;
 
 }
 
 .alt1 {
 
-  font-family: 'Source Sans Pro', sans-serif;
-  font-style: normal;
-  margin: 10px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-style: normal;
+	margin: 10px;
 
 }
 
 .alt1 input {
 
-  height: 40px !important;
+	height: 40px !important;
 
 }
 
 .alt2 {
 
-  font-family: 'Source Sans Pro', sans-serif;
-  font-style: normal;
-  margin: 10px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-style: normal;
+	margin: 10px;
 
 }
 
 .alt2 input {
 
-  height: 40px !important;
+	height: 40px !important;
 
 }
 
 .alt .input-group {
 
-    font-style: normal;
-    width: 100%;
+		font-style: normal;
+		width: 100%;
 }
 
 .panel-body {
 
-   margin-top: 180px;
+	 margin-top: 180px;
 
 }
 
 .col-sm-5 {
 
-  margin-left: 36.33333333%;
+	margin-left: 36.33333333%;
 }
-  
+	
 
 .btn-primary {
 
-  width: 100%;
+	width: 100%;
 
 }
 
 .jumbotron {
 
-    background-color: white;
+		background-color: white;
 
 }
 
 .form-control {
 
-  font-family: 'Source Sans Pro', sans-serif;
-  font-style: normal;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-style: normal;
 
 }
 
 .panel-primary {
 
-  margin-bottom: 0px;
+	margin-bottom: 0px;
 
 }
 
 .panel-body {
 
-  padding: 6px;
+	padding: 6px;
 
 }
 
 .jumbotron .btn-primary {
 
-  margin-right: 8px; 
-  border-radius: 24px;
+	margin-right: 8px; 
+	border-radius: 24px;
 
 }
 
 .navbar-inverse {
 
-  padding: 5px;
+	padding: 5px;
 
 }
 
@@ -115,85 +122,110 @@ body {
 
 .dropdown-menu {
 
-  margin-top: 5px !important;
+	margin-top: 5px !important;
 
 }
 
 .edit-con {
 
-  margin-top: 80px;
+	margin-top: 80px;
 
 }
 
 .button {
 
-  margin-left: 10px;
+	margin-left: 10px;
 
 }
 
 .glyphicon-cog {
 
-  margin-right: 50px;
+	margin-right: 50px;
 
 }
 
 .navbar-brand {
 
-  margin-left: 50px !important;
+	margin-left: 50px !important;
 
 }
 
 .col-sm-3 {
 
-  margin-top: 8px;
+	margin-top: 8px;
 
 }
 
 .col-sm-4 {
 
-  margin-top: 80px;
+	margin-top: 80px;
 
 }
 
 .search .input-group {
 
-  margin-left: 140px !important;
-  margin-left: 150px;
+	margin-left: 140px !important;
+	margin-left: 150px;
 
 
 }
 
 .input-group .month {
 
-  margin-left: 15px;
+	margin-left: 15px;
 
 }
 
 .alert-danger {
 
-  margin-bottom: 30px;
-  margin-top:13px;
+	margin-bottom: 25px;
+	margin-top: 13px;
 
 }
 .error ul {
 
-  list-style-type: none !important; 
-  margin-bottom: 0px !important;
+	list-style-type: none !important; 
+	margin-bottom: 0px !important;
 
 }
 
 .errorlist { 
 
-    list-style-type: none !important; 
-    margin-bottom: 0px !important;
+		list-style-type: none !important; 
+		margin-bottom: 0px !important;
 
 }
 
 .jumbotron p {
 
-    margin-bottom: 15px;
-    font-size: 40px;
-    font-weight: 200;
+		margin-bottom: 15px;
+		font-size: 40px;
+		font-weight: 200;
 
 }
 
+/*.wrapper {
+background-color: #FFFFFF;
+margin: 0 auto;
+opacity: 0.9;
+padding: 0 20px 15px;
+width: 940px;
+}*/
+
+.btn-primary {
+
+	margin-top: 13px;"
+}
+
+.messages{
+
+	list-style-type: none;
+	padding-left: 0px;
+}
+
+#red .alert-danger{
+
+	margin-bottom: -13px;
+	margin-top: 13px;
+
+}

@@ -35,39 +35,43 @@
 							<form action="" method="POST">
 									{% csrf_token %}            
 								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Username" style="margin-top:20px" name="{{ form.username.html_name}}" required>
 									<center>
 										{% if form.username.errors %}
-										<div class="alert alert-danger">
-											<div class="error">
-												{{ form.username.errors }}
-											</div>{% endif %}
-									<!-- <p><label for="username"{% if form.username.errors %} class="error"{% endif %}></label></p> -->
+										<div class="alert alert-danger" role="alert" id="red">
+											<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+												<p></p>
+													{{ form.username.errors }}
+														{% endif %}
+												</p>
 									</center>
+									<input type="text" class="form-control" placeholder="Username" style="margin-top:20px" name="{{ form.username.html_name}}" required>
 								</div>
 								<div class="form-group">
-									<input type="password" class="form-control" placeholder="Password" style="margin-top:20px" name="{{ form.password1.html_name}}" required>
 									<center>
 										{% if form.password1.errors %}
-											<div class="alert alert-danger">
-												<p class="error">
-													{{ form.password1.errors }}
-												</p>{% endif %}
+										<div id="red">
+											<div class="alert alert-danger" role="alert">
+												<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+													<p class="error">
+														{{ form.password1.errors }}
+														{% endif %}
+													</p>
 											</div>
-										<!-- <label for="password1"{% if form.password.errors %} class="error"{% endif %}></label> -->
 									</center>
+									<input type="password" class="form-control" placeholder="Password" style="margin-top:20px" name="{{ form.password1.html_name}}" required>
 								</div>
 								<div class="form-group">
-									<input type="password" class="form-control" placeholder="Confirm Password" style="margin-top:20px" name="{{ form.password2.html_name}}" required>
 									<center>
 										{% if form.password2.errors %}
-											<div class="alert alert-danger">
+											<div class="alert alert-danger" role="alert" id="red">
+												<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 												<p class="error">
 													{{ form.password2.errors }}
-													</p>{% endif %}
-												<!-- <label for="password2"{% if form.password.errors %} class="error"{% endif %}></label> -->
+														{% endif %}
+												</p>
 											</div>
 									</center>
+									<input type="password" class="form-control" placeholder="Confirm Password" style="margin-top:20px" name="{{ form.password2.html_name}}" required>
 								<div class="form-group">
 									<input type="text" class="form-control" placeholder="First name" style="margin-top:20px" name="{{ form.first_name.html_name}}" required>
 								</div>
@@ -84,5 +88,7 @@
 					</div>
 				</div>
 			</div>
+		<script src="{{STATIC_URL}}logme/js/jquery-1.7.1.min.js"></script>
+		<script src="{{STATIC_URL}}logme/js/bootstrap.js"></script>	
 	</body>
 </html>

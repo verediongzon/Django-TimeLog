@@ -30,8 +30,7 @@ class RegistrationForm(user_forms.UserCreationForm):
 class PasswordChangeForm(user_forms.SetPasswordForm):    
     
     error_messages = dict(SetPasswordForm.error_messages, **{
-        'password_incorrect': ("Your old password was entered incorrectly. "
-                                "Please enter it again."),
+        'password_incorrect': ("Your old password was entered incorrectly. "),
                                 })
 
     old_password = forms.CharField(label="Old password",
