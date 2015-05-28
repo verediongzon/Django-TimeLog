@@ -54,8 +54,8 @@ body {
 
 .alt .input-group {
 
-		font-style: normal;
-		width: 100%;
+	font-style: normal;
+	width: 100%;
 }
 
 .panel-body {
@@ -128,7 +128,7 @@ body {
 
 .edit-con {
 
-	margin-top: 80px;
+	margin-top: 30px;
 
 }
 
@@ -164,15 +164,9 @@ body {
 
 .search .input-group {
 
-	margin-left: 140px !important;
-	margin-left: 150px;
+	margin-left: 90px !important;
+	margin-top: 40px;
 
-
-}
-
-.input-group .month {
-
-	margin-left: 15px;
 
 }
 
@@ -223,9 +217,29 @@ width: 940px;
 	padding-left: 0px;
 }
 
-#red .alert-danger{
+#error1 .alert-danger{
 
 	margin-bottom: -13px;
 	margin-top: 13px;
+
+}
+
+#error2 .alert-danger{
+
+	margin-bottom: -13px;
+	margin-top: 13px;
+
+}
+
+#error3 .alert-danger{
+
+	margin-bottom: -13px;
+	margin-top: 13px;
+
+}
+
+.glyphicon.glyphicon-circle-arrow-left {
+	
+    font-size: 30px;
 
 }
