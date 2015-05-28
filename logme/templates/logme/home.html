@@ -13,6 +13,7 @@
 	<body>
 		<form action="{% url 'logat:home' %}" method="POST">
 			{% csrf_token %}
+
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 				<div class="container-fluid">
 					<div class="navbar-header">
@@ -58,6 +59,7 @@
 													</select>
 												</input>
 											</div>
+
 										</div>
 									</form>
 								</div>
