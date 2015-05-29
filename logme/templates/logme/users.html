@@ -56,7 +56,7 @@
 							<td>			
 								<form action="{% url 'logat:manage' %}" method='POST'>
 										{% csrf_token %}
-				 					<span style="padding-left:7px;" ><input type='submit' name='kick' class="btn btn-primary" value='Kick'/></span>
+				 					<span style="padding-left:7px;" ><input type='submit' name='kick' class="btn btn-danger" value='Kick'/></span>
 									<span style="padding-left:7px;"><input type='hidden' name='userpk' class="btn btn-default" value='{{ shows.pk }}'/></span>
 								</form>
 							</td>

@@ -117,12 +117,12 @@ class Index(generic.TemplateView):
 						getuser.save()
 
 						return render(request, 'logme/form.html', {
-		            	'error_message': "Account is Already login.",
+		            	'error_message': "Account is already login.",
 		        	})
 
 		else:
 			 return render(request, 'logme/form.html', {
-            'error_message': "Username/Password Invalid. Please Try Again.",
+            'error_message': "Username/Password invalid. Please Try Again.",
         })
 	
 

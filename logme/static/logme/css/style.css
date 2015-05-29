@@ -3,9 +3,9 @@
 
 body {
 
-		padding-top: 40px;
-		padding-bottom: 40px;
-		/*background-color: transparent !important;*/
+	padding-top: 40px;
+	padding-bottom: 40px;
+	/*background-color: transparent !important;*/
 
 }
 
@@ -18,9 +18,9 @@ body {
 }*/
 .form-signin {
 
-		max-width: 280px;
-		padding: 15px;
-		margin: 0 auto;
+	max-width: 280px;
+	padding: 15px;
+	margin: 0 auto;
 
 }
 
@@ -60,7 +60,7 @@ body {
 
 .panel-body {
 
-	 margin-top: 180px;
+	margin-top: 180px;
 
 }
 
@@ -78,7 +78,7 @@ body {
 
 .jumbotron {
 
-		background-color: white;
+	background-color: white;
 
 }
 
@@ -116,8 +116,8 @@ body {
 
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus {
 
- background-color: transparent !important;
- 
+	 background-color: transparent !important;
+	 
 }
 
 .dropdown-menu {
@@ -185,16 +185,16 @@ body {
 
 .errorlist { 
 
-		list-style-type: none !important; 
-		margin-bottom: 0px !important;
+	list-style-type: none !important; 
+	margin-bottom: 0px !important;
 
 }
 
 .jumbotron p {
 
-		margin-bottom: 15px;
-		font-size: 40px;
-		font-weight: 200;
+	margin-bottom: 15px;
+	font-size: 40px;
+	font-weight: 200;
 
 }
 

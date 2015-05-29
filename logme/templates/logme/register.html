@@ -12,57 +12,56 @@
 	</head>
 	<body>
 		<nav class="navbar navbar-inverse navbar-fixed-top">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-							<ul class="nav navbar-nav navbar-right">
-								<a class="navbar-brand" href="{% url 'logat:index' %}"><i class="glyphicon glyphicon-circle-arrow-left"></i></a>
-							</ul>
-						</div>
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav navbar-right">
+							<a class="navbar-brand" href="{% url 'logat:index' %}"><i class="glyphicon glyphicon-circle-arrow-left"></i></a>
+						</ul>
 					</div>
+				</div>
 		</nav>
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-4 col-md-5 col-md-offset-4">
-						<h1 class="text-center login-title"><strong>Create Account</strong></h1><br><br>
-						<div class="form-group">
-							<form action="" method="POST">
-									{% csrf_token %}            
-								<div class="form-group">
-									<center>
-										{% if form.username.errors %}
-										<div class="alert alert-danger" role="alert" id="error1">
-											<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-												<p></p>
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-4 col-md-5 col-md-offset-4">
+							<h1 class="text-center login-title"><strong>Create Account</strong></h1><br><br>
+							<div class="form-group">
+								<form action="" method="POST">
+										{% csrf_token %}            
+									<div class="form-group">
+										<center>
+											{% if form.username.errors %}
+											<div class="alert alert-danger" role="alert" id="error1">
+												<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+												<p class="error">
 													{{ form.username.errors }}
-														{% endif %}
+													{% endif %}
 												</p>
-									</center>
-									<input type="text" class="form-control" placeholder="Username" name="{{ form.username.html_name}}" required>
-								</div>
-								<div class="form-group">
-									<center>
-										{% if form.password1.errors %}
-										<div id="red">
+										</center>
+										<input type="text" class="form-control" placeholder="Username" name="{{ form.username.html_name}}" required>
+									</div>
+									<div class="form-group">
+										<center>
+											{% if form.password1.errors %}
 											<div class="alert alert-danger" role="alert" id="error2">
 												<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-													<p class="error">
-														{{ form.password1.errors }}
-														{% endif %}
-													</p>
+												<p class="error">
+													{{ form.password1.errors }}
+													{% endif %}
+												</p>
 											</div>
-									</center>
-									<input type="password" class="form-control" placeholder="Password" name="{{ form.password1.html_name}}" required>
-								</div>
-								<div class="form-group">
-									<center>
-										{% if form.password2.errors %}
+										</center>
+										<input type="password" class="form-control" placeholder="Password" name="{{ form.password1.html_name}}" required>
+									</div>
+									<div class="form-group">
+										<center>
+											{% if form.password2.errors %}
 											<div class="alert alert-danger" role="alert" id="error3">
 												<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 												<p class="error">
@@ -70,20 +69,21 @@
 														{% endif %}
 												</p>
 											</div>
-									</center>
-									<input type="password" class="form-control" placeholder="Confirm Password" style="margin-top:20px" name="{{ form.password2.html_name}}" required>
-								<div class="form-group">
-									<input type="text" class="form-control" placeholder="First name" style="margin-top:20px" name="{{ form.first_name.html_name}}" required>
-								</div>
-								<div class="form-group">
-									<input type="text" class="form-control" placeholder="Last name" style="margin-top:20px" name="{{ form.last_name.html_name}}"required>
-								</div>
-								<div class="form-group">
-									<input type="email" class="form-control" placeholder="Email Address" style="margin-top:20px" name="{{ form.email.html_name}}"required>
-								</div>
-									<button type="submit" class="btn btn-primary btn-lg" style="margin-top:10px">Sign Up</i></button>
-								</div>
-							</form>
+										</center>
+										<input type="password" class="form-control" placeholder="Confirm Password" style="margin-top:20px" name="{{ form.password2.html_name}}" required>
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="First name" style="margin-top:20px" name="{{ form.first_name.html_name}}" required>
+										</div>
+										<div class="form-group">
+											<input type="text" class="form-control" placeholder="Last name" style="margin-top:20px" name="{{ form.last_name.html_name}}"required>
+										</div>
+										<div class="form-group">
+											<input type="email" class="form-control" placeholder="Email Address" style="margin-top:20px" name="{{ form.email.html_name}}"required>
+										</div>
+										<button type="submit" class="btn btn-primary btn-lg" style="margin-top:10px">Sign Up</i></button>
+									</div>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
