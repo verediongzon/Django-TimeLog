@@ -46,10 +46,11 @@
 								</div>
 							</form>
 					</div>
-						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-							<ul class="nav navbar-nav navbar-right">
-								<a class="navbar-brand" href="{% url 'logat:admin' %}">Back to Admin <i class="glyphicon glyphicon-user"></a></i>
-							</ul>
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav navbar-right">
+							<a class="navbar-brand" href="{% url 'logat:admin' %}"><i class="glyphicon glyphicon-circle-arrow-left"></i></a>
+						</ul>
+					</div>	
 				</div>
 			</nav>
 			</br></br>
@@ -61,13 +62,16 @@
 								<th><div class="panel-heading"><h3><strong><p class= "text-center">Time Out </strong></h3></div></th>
 								<th><div class="panel-heading"><h3><strong><p class= "text-center">Time Total </strong></h3></div></th>
 							</tr>
-									{% for showing in show_history %}
+						</thead>
+						<tbody>
+								{% for showing in show_history %}
 							<tr>
 								<td><h5><p class= "text-center"> {{showing.timein}}</td>
 								<td><h5><p class= "text-center"> {{showing.timeout}}</td>
 								<td><h5><p class= "text-center"> {{showing.totaltime}}</td>
 									{% endfor %}
 							</tr>
+						</tbody>
 					</table>
 				</div>
 		</body>

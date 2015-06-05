@@ -3,9 +3,9 @@
 
 body {
 
-		padding-top: 40px;
-		padding-bottom: 40px;
-		/*background-color: transparent !important;*/
+	padding-top: 40px;
+	padding-bottom: 40px;
+	/*background-color: transparent !important;*/
 
 }
 
@@ -18,9 +18,9 @@ body {
 }*/
 .form-signin {
 
-		max-width: 280px;
-		padding: 15px;
-		margin: 0 auto;
+	max-width: 280px;
+	padding: 15px;
+	margin: 0 auto;
 
 }
 
@@ -54,13 +54,13 @@ body {
 
 .alt .input-group {
 
-		font-style: normal;
-		width: 100%;
+	font-style: normal;
+	width: 100%;
 }
 
 .panel-body {
 
-	 margin-top: 180px;
+	margin-top: 180px;
 
 }
 
@@ -78,7 +78,7 @@ body {
 
 .jumbotron {
 
-		background-color: white;
+	background-color: white;
 
 }
 
@@ -116,8 +116,8 @@ body {
 
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus {
 
- background-color: transparent !important;
- 
+	 background-color: transparent !important;
+	 
 }
 
 .dropdown-menu {
@@ -128,7 +128,7 @@ body {
 
 .edit-con {
 
-	margin-top: 80px;
+	margin-top: 30px;
 
 }
 
@@ -164,15 +164,9 @@ body {
 
 .search .input-group {
 
-	margin-left: 140px !important;
-	margin-left: 150px;
+	margin-left: 90px !important;
+	margin-top: 50px;
 
-
-}
-
-.input-group .month {
-
-	margin-left: 15px;
 
 }
 
@@ -191,16 +185,16 @@ body {
 
 .errorlist { 
 
-		list-style-type: none !important; 
-		margin-bottom: 0px !important;
+	list-style-type: none !important; 
+	margin-bottom: 0px !important;
 
 }
 
 .jumbotron p {
 
-		margin-bottom: 15px;
-		font-size: 40px;
-		font-weight: 200;
+	margin-bottom: 15px;
+	font-size: 40px;
+	font-weight: 200;
 
 }
 
@@ -223,9 +217,30 @@ width: 940px;
 	padding-left: 0px;
 }
 
-#red .alert-danger{
+#error1 .alert-danger{
 
 	margin-bottom: -13px;
 	margin-top: 13px;
 
 }
+
+#error2 .alert-danger{
+
+	margin-bottom: -13px;
+	margin-top: 13px;
+
+}
+
+#error3 .alert-danger{
+
+	margin-bottom: -13px;
+	margin-top: 13px;
+
+}
+
+.glyphicon.glyphicon-circle-arrow-left {
+	
+    font-size: 30px;
+
+}
+

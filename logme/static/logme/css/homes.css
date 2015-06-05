@@ -50,5 +50,18 @@
 
 .input-group {
 
-	margin-top: 13px;
+	margin-top: 10px;
+
+}
+
+.pull-right {
+
+	margin-bottom: -15px;
+
+}
+
+.glyphicon.glyphicon-circle-arrow-left {
+  
+    font-size: 30px;
+
 }
